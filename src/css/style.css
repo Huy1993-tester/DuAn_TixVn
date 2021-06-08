@@ -1,5 +1,42 @@
-.carousel {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.latMat {
+  background-image: url("../asset/img/latMat.jpg");
+  height: 500px;
+}
+
+.trangTi {
   background-image: url("../asset/img/trangTi.jpg");
   height: 500px;
+}
+
+.banTayDietQuy {
+  background-image: url("../asset/img/banTayDietQuy.jpg");
+  height: 500px;
+}
+
+.slick-arrow.slick-next {
+  right: 0;
+  left: 93%;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+.slick-arrow.slick-prev {
+  right: 5%;
+  left: 0;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+.slick-slider.carousel.slick-initialized .slick-next:before,
+.slick-slider.carousel.slick-initialized .slick-prev:before {
+  font-size: 100px;
 }
 /*# sourceMappingURL=style.css.map */

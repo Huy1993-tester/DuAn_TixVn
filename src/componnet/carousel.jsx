@@ -1,13 +1,46 @@
 import React from "react";
-
-function Carousel() {
+import Slider from "react-slick";
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
   return (
-    <div className="carousel">
-      {/* <div className="carousel-1"> </div>
-      <div className="carousel-2"></div>
-      <div className="carousel-3"></div> */}
-    </div>
+    <div
+      className={className}
+      style={{
+        ...style,
+      }}
+      onClick={onClick}
+    />
   );
 }
-
-export default Carousel;
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+      }}
+      onClick={onClick}
+    />
+  );
+}
+export default function Carousel() {
+  var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    speed: 500,
+    rows: 1,
+    slidesPerRow: 1,
+    // autoplay: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+  return (
+    <Slider {...settings} className="carousel">
+      <div className="banTayDietQuy"></div>
+      <div className="trangTi"></div>
+      <div className="latMat"></div>
+    </Slider>
+  );
+}
