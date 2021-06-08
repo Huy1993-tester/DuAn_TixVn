@@ -1,9 +1,3 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 .banTayDietQuy {
   background-image: url("../asset/img/banTayDietQuy.png");
   height: 500px;
@@ -45,4 +39,4 @@
 .slick-slider.carousel.slick-initialized .slick-prev:before {
   font-size: 100px;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=home.css.map */

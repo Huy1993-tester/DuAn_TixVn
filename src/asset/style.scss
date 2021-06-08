@@ -4,29 +4,5 @@
   margin: 0;
 }
 ///carousel-start
-$sociacl: trangTi ,trangTi, latMat;
-@each $item in $sociacl {
-  .#{$item} {
-    background-image: url("../asset/img/#{$item}.jpg");
-    height: 500px;
-  }
-}
-@mixin Next-Pre($right, $left) {
-  right: $right;
-  left: $left;
-  height: 100px;
-  width: 100px;
-  z-index: 1;
-}
-.slick-arrow.slick-next {
-  @include Next-Pre(0, 93%);
-}
-.slick-arrow.slick-prev {
-  @include Next-Pre(5%, 0);
-}
-
-.slick-slider.carousel.slick-initialized .slick-next:before,
-.slick-slider.carousel.slick-initialized .slick-prev:before {
-  font-size: 100px;
-}
+@import "./basicSCSS/home.scss"
 ///carousel-end
