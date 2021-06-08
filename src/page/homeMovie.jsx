@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getListMovie } from "../action/actionAPI/actionGetListMovie";
+import { getListMovie } from "../store/action/actionAPI/actionGetListMovie";
 
 function HomeMovie() {
   const dispatch = useDispatch();
