@@ -4,8 +4,8 @@
   margin: 0;
 }
 
-.latMat {
-  background-image: url("../asset/img/latMat.jpg");
+.trangTi {
+  background-image: url("../asset/img/trangTi.jpg");
   height: 500px;
 }
 
@@ -14,8 +14,8 @@
   height: 500px;
 }
 
-.banTayDietQuy {
-  background-image: url("../asset/img/banTayDietQuy.jpg");
+.latMat {
+  background-image: url("../asset/img/latMat.jpg");
   height: 500px;
 }
 

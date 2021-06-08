@@ -4,7 +4,7 @@
   margin: 0;
 }
 ///carousel-start
-$sociacl: latMat, trangTi, banTayDietQuy;
+$sociacl: trangTi ,trangTi, latMat;
 @each $item in $sociacl {
   .#{$item} {
     background-image: url("../asset/img/#{$item}.jpg");
