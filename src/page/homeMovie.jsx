@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getListMovie } from "../action/actionAPI/actionGetListMovie";
+import Carousel from "../componnet/carousel";
 
 function HomeMovie() {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function HomeMovie() {
   });
   return (
     <div>
-      <h1>helo</h1>
+      <Carousel />
     </div>
   );
 }
