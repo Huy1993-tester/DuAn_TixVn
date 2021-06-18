@@ -1,10 +1,16 @@
-
-import './App.css';
-import HomeMovie from './page/homeMovie';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.css";
+import Home from "./page/home";
 
 function App() {
   return (
-   <HomeMovie/>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

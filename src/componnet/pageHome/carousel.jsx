@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import HomeTool from "./homeTool";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -26,7 +27,7 @@ function SamplePrevArrow(props) {
 }
 export default function Carousel() {
   var settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     slidesToShow: 1,
     speed: 500,
@@ -37,10 +38,13 @@ export default function Carousel() {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <Slider {...settings} className="carousel">
-      <div className="banTayDietQuy"></div>
-      <div className="trangTi"></div>
-      <div className="latMat"></div>
-    </Slider>
+    <div>
+      <Slider {...settings} className="carousel">
+        <div className="banTayDietQuy"></div>
+        <div className="trangTi"></div>
+        <div className="latMat"></div>
+      </Slider>
+      <HomeTool />
+    </div>
   );
 }
