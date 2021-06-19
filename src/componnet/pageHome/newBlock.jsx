@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NewBlock() {
   const classes = useStyles();
   const [value, setValue] = React.useState("1");
-  const handleChange = (newValue) => {
+  const handleChange = (event,newValue) => {
     setValue(newValue);
   };
   return (
@@ -32,7 +32,7 @@ export default function NewBlock() {
           </AppBar>
           <TabPanel value="1">
             <div container className="aboutGrid1">
-              <div item>
+              <div>
                 <CardMedia
                   component="img"
                   image="https://s3img.vcdn.vn/123phim/2021/03/an-dinh-chac-nich-ngay-khoi-chieu-16-04-ly-hai-tung-clip-lat-mat-48h-dam-chat-fast-furious-mien-song-nuoc-16170881088272.png"
@@ -46,7 +46,7 @@ export default function NewBlock() {
                   đuổi gay cấn thót tim fans hâm mộ
                 </p>
               </div>
-              <div item>
+              <div>
                 <CardMedia
                   component="img"
                   image="https://s3img.vcdn.vn/123phim/2021/03/mortal-kombat-cuoc-chien-sinh-tu-goi-ten-nhung-phim-dien-anh-noi-tieng-duoc-chuyen-the-tu-cac-tua-game-dinh-dam-16170160290762.png"
@@ -143,7 +143,7 @@ export default function NewBlock() {
           </TabPanel>
           <TabPanel value="2">
             <div container className="aboutGrid1">
-              <div item>
+              <div>
                 <CardMedia
                   component="img"
                   image="https://s3img.vcdn.vn/123phim/2020/08/review-tan-tich-quy-am-relic-ba-the-he-va-moi-lien-ket-15965255784224.png"
@@ -157,7 +157,7 @@ export default function NewBlock() {
                   đuổi gay cấn thót tim fans hâm mộ
                 </p>
               </div>
-              <div item>
+              <div>
                 <CardMedia
                   component="img"
                   image="https://s3img.vcdn.vn/123phim/2020/08/review-dinh-thu-oan-khuat-ghost-of-war-15965120886610.png"
@@ -174,7 +174,7 @@ export default function NewBlock() {
                 </p>
               </div>
             </div>
-            <div container className="aboutGrid">
+            <div container className="aboutGrid2">
               <div>
                 <CardMedia
                   component="img"
@@ -254,7 +254,7 @@ export default function NewBlock() {
           </TabPanel>
           <TabPanel value="3">
             <div container className="aboutGrid1">
-              <div item>
+              <div>
                 <CardMedia
                   component="img"
                   image="https://s3img.vcdn.vn/123phim/2021/04/bhd-59k-ve-ca-tuan-16190002421777.jpg"
@@ -268,7 +268,7 @@ export default function NewBlock() {
                   đuổi gay cấn thót tim fans hâm mộ
                 </p>
               </div>
-              <div item>
+              <div>
                 <CardMedia
                   component="img"
                   image="https://s3img.vcdn.vn/123phim/2020/11/tix-1k-ve-ngai-chi-gia-ve-16045662877511.jpg"
@@ -285,7 +285,7 @@ export default function NewBlock() {
                 </p>
               </div>
             </div>
-            <div container className="aboutGrid">
+            <div container className="aboutGrid2">
               <div>
                 <CardMedia
                   component="img"

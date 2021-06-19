@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getListMovie } from "../../core/service/actionGetListMovie";
+import { getListMovie } from "../../store/core/service/actionGetListMovie";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
