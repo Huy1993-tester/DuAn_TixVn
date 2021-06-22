@@ -1,5 +1,7 @@
 import { Container } from "@material-ui/core";
 import React from "react";
+import logo1 from "../asset/image/logo-1.png";
+import logo2 from "../asset/image/logo-2.png";
 
 function Footer() {
   return (
@@ -24,13 +26,13 @@ function Footer() {
               </div>
               <div className="itemChild hideText">
                 <div>
-                  {/* <img  src="../asset/img/logo-1.png"></img>
+                  <img src={logo1}></img>
                   <br />
-                  <img  src="../asset/img/logo-2.png"></img>
+                  <img src={logo2}></img>
                   <br />
-                  <img  src="../asset/img/logo-1.png"></img>
+                  <img src="./asset/image/logo-1.png"></img>
                   <br />
-                  <img  src="../asset/img/logo-1.png"></img> */}
+                  <img src="./asset/img/logo-1.png"></img>
                 </div>
                 <div>
                   {/* <img  src="../asset/img/logo-1.png"></img>
@@ -80,7 +82,7 @@ function Footer() {
               </div>
             </div>
 
-            <div className="itemChi hideText" >
+            <div className="itemChi hideText">
               <h5>MOBILE APP</h5>
               <img
                 src="https://tix.vn/app/assets/img/icons/apple-logo.png"
@@ -93,11 +95,13 @@ function Footer() {
             </div>
             <div className="itemChi">
               <h5 className="hideText">SOCIAL</h5>
-              <img className="face"
+              <img
+                className="face"
                 src="https://tix.vn/app/assets/img/icons/facebook-logo.png"
                 alt=""
               />
-              <img className="zalo"
+              <img
+                className="zalo"
                 src="https://tix.vn/app/assets/img/icons/zalo-logo.png"
                 alt=""
               />
