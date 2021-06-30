@@ -9,28 +9,30 @@ body {
   overflow-x: hidden;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+}
+
 .banTayDietQuy {
   background-image: url("../asset/image/banTayDietQuy.png");
-  height: 500px;
+  height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
 }
 
 .trangTi {
   background-image: url("../asset/image/trangTi.png");
-  height: 500px;
+  height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
 }
 
 .latMat {
   background-image: url("../asset/image/latMat.png");
-  height: 500px;
+  height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
 }
 
 .slick-arrow.slick-next {
@@ -49,8 +51,7 @@ body {
   z-index: 1;
 }
 
-.slick-slider.carousel.slick-initialized .slick-next:before,
-.slick-slider.carousel.slick-initialized .slick-prev:before {
+.slick-slider.carousel.slick-initialized .slick-next:before, .slick-slider.carousel.slick-initialized .slick-prev:before {
   font-size: 100px;
 }
 
@@ -96,8 +97,7 @@ body {
   z-index: 1;
 }
 
-.HomeMovie .slick-slider.slick-initialized .slick-next:before,
-.HomeMovie .slick-slider.slick-initialized .slick-prev:before {
+.HomeMovie .slick-slider.slick-initialized .slick-next:before, .HomeMovie .slick-slider.slick-initialized .slick-prev:before {
   font-size: 100px;
   color: #a69f9f6e;
 }
@@ -214,11 +214,11 @@ body {
 }
 
 .backgroundImage {
-  background-image: url(../asset/image/backapp.jpg);
   width: 100%;
   height: 800px;
-  opacity: 1;
   position: relative;
+  background-image: url(../asset/image/backapp.jpg);
+  opacity: 1;
 }
 
 .textApp {
@@ -244,12 +244,12 @@ body {
 }
 
 .imgApp {
-  border: 5px solid #dfc8c847;
-  height: 600px;
   width: 300px;
+  height: 600px;
+  position: absolute;
+  border: 5px solid #dfc8c847;
   border-radius: 10%;
   overflow: hidden;
-  position: absolute;
 }
 
 .cardApp .slick-slider.slick-initialized .slick-arrow.slick-prev:before {
@@ -257,8 +257,9 @@ body {
 }
 
 .backgroundColor {
-  background-color: #080707f0;
   height: 400px;
+  width: 100%;
+  background-color: #080707f0;
   color: #817b7b;
 }
 
@@ -276,7 +277,12 @@ body {
   gap: 2px;
 }
 
-.itemChild img,
+.itemChild img {
+  height: 30px;
+  width: 30px;
+  padding: 2px;
+}
+
 .itemChi img {
   height: 30px;
   width: 30px;
@@ -296,28 +302,27 @@ body {
 }
 
 @media screen and (max-width: 1200px) {
-  .slick-slider.carousel.slick-initialized .slick-next:before,
-  .slick-slider.carousel.slick-initialized .slick-prev:before {
-    font-size: 75px;
-  }
   .slick-slider.carousel.slick-initialized .slick-next:before {
+    font-size: 75px;
     margin-left: -2rem;
   }
   .slick-slider.carousel.slick-initialized .slick-prev:before {
+    font-size: 75px;
     margin: 2rem;
-  }
-  .homeTool .container button {
-    font-size: 20px;
   }
   .homeTool .container {
     padding: 1rem;
+  }
+  .homeTool .container button {
+    font-size: 20px;
   }
   .HomeMovie .slick-arrow.slick-prev:before,
   .HomeMovie .slick-arrow.slick-next:before {
     display: none;
   }
-  .HomeMovie .MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom {
-    font-size: 15px;
+  .HomeMovie .MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom,
+  .HomeMovie .aboutGrid2 h5 {
+    font-size: 20px;
     font-weight: bold;
   }
   .tableBlock.MuiTableBody-root {
@@ -332,10 +337,6 @@ body {
   }
   .aboutGrid2 h3 {
     font-size: 20px;
-    font-weight: bold;
-  }
-  .aboutGrid2 h5 {
-    font-size: 15px;
     font-weight: bold;
   }
   .backgroundImage {
@@ -363,8 +364,7 @@ body {
 }
 
 @media screen and (max-width: 992px) {
-  .slick-slider.carousel.slick-initialized .slick-next:before,
-  .slick-slider.carousel.slick-initialized .slick-prev:before {
+  .slick-slider.carousel.slick-initialized .slick-next:before, .slick-slider.carousel.slick-initialized .slick-prev:before {
     font-size: 50px;
   }
   .homeTool .container {
@@ -374,17 +374,13 @@ body {
   .homeTool .container button {
     font-size: 15px;
   }
-  .aboutGrid1 {
-    grid-template-columns: auto;
-  }
+  .aboutGrid1,
   .aboutGrid2 {
     grid-template-columns: auto;
   }
-  .grid .textApp {
-    transform: translate(20%, -30%);
-  }
+  .grid .textApp,
   .grid .imgApp {
-    transform: translate(-20%, -30%);
+    transform: translate(20%, -30%);
   }
   .hideText {
     display: none;
@@ -394,39 +390,36 @@ body {
     grid-template-columns: auto;
     height: 100px;
   }
-  .backgroundColor .textInfo {
-    text-align: center;
+  .item .oneLine {
+    display: flex;
+    white-space: nowrap;
   }
   .infoitem img {
     height: 50px;
     width: 100px;
   }
-  .item .oneLine {
-    display: flex;
-    white-space: nowrap;
-  }
   .backgroundColor {
     position: relative;
+  }
+  .backgroundColor .textInfo {
+    text-align: center;
   }
   .itemChi img.zalo {
     position: absolute;
     top: 3rem;
     left: 55%;
     transform: translate(-50%, 50%);
-    background-color: red;
   }
   .itemChi img.face {
     position: absolute;
     top: 3rem;
     left: 45%;
     transform: translate(-50%, 50%);
-    background-color: red;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .slick-slider.carousel.slick-initialized .slick-next:before,
-  .slick-slider.carousel.slick-initialized .slick-prev:before {
+  .slick-slider.carousel.slick-initialized .slick-next:before, .slick-slider.carousel.slick-initialized .slick-prev:before {
     font-size: 25px;
   }
   .homeTool .container {
@@ -452,13 +445,13 @@ body {
   .backgroundColor .textInfo {
     text-align: center;
   }
+  .infoitem {
+    grid-template-columns: auto;
+  }
   .infoitem img {
     height: 50px;
     width: 100px;
     transform: translate(250%, -20%);
-  }
-  .infoitem {
-    grid-template-columns: auto;
   }
 }
 
