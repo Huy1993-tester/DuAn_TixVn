@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./page/home";
 import Dashboard from "./admin/page/dashboard/dashboard.page";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -12,7 +13,6 @@ function App() {
         </Route>
         <Route path="/admin/:feature" component={Dashboard} />
         <Route path="/admin" component={Dashboard} />
-
         {/* Page not found */}
         <Route path="">
           <Redirect to="/" />

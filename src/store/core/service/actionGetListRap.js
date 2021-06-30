@@ -1,17 +1,15 @@
-import axios from "axios";
 import {
-  DOMAIN,
   GET_LIST_CUM_RAP,
   GET_LIST_RAP,
 } from "../../contance/global/contAction";
+import { api } from "../api/apiService";
 
 export const getListRap = () => {
+  let url = "api/QuanLyRap/LayThongTinHeThongRap";
+  let method = "GET";
   return async (dispatch) => {
     try {
-      const res = await axios({
-        url: `${DOMAIN}/api/QuanLyRap/LayThongTinHeThongRap`,
-        method: "GET",
-      });
+      const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_RAP,
         payload: res.data,
@@ -22,13 +20,12 @@ export const getListRap = () => {
   };
 };
 
-export const getListCumRap = (maHeThongRap,maNhom) => {
+export const getListCumRap = (maHeThongRap, maNhom) => {
+  let url = `api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${maNhom}`;
+  let method = "GET";
   return async (dispatch) => {
     try {
-      const res = await axios({
-        url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${maNhom}`,
-        method: "GET",
-      });
+      const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_CUM_RAP,
         payload: res.data,

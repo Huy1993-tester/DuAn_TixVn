@@ -40,16 +40,20 @@ body {
   left: $left;
   transform: $transform;
 }
+///header
+.header{
+  display: flex;
+  justify-content: center;
+}
 
 ////Carousel
 $sociacl: banTayDietQuy, trangTi, latMat;
 @each $item in $sociacl {
   .#{$item} {
     background-image: url("../asset/image/#{$item}.png");
-    height: 500px;
+    height: 800px;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
   }
 }
 
@@ -64,9 +68,7 @@ $sociacl: banTayDietQuy, trangTi, latMat;
   font-size: 100px;
   }
 }
-
 //////HomeTool
-
 .homeTool {
   .container {
     @include partnerDisplay(grid, auto auto auto auto auto);

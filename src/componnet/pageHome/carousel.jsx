@@ -39,7 +39,7 @@ export default function Carousel() {
   };
   return (
     <div>
-      <Slider {...settings} className="carousel">
+      <Slider {...settings} className="carousel container-fluid">
         <div className="banTayDietQuy"></div>
         <div className="trangTi"></div>
         <div className="latMat"></div>
