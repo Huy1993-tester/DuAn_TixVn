@@ -1,8 +1,5 @@
-import {
-  GET_LIST_CUM_RAP,
-  GET_LIST_RAP,
-} from "../../contance/global/contAction";
-import { api } from "../api/apiService";
+import { GET_LIST_CUM_RAP, GET_LIST_RAP } from "../constant/cinema.constant";
+import { api } from "../../core/service/api.service";
 
 export const getListRap = () => {
   let url = "api/QuanLyRap/LayThongTinHeThongRap";
@@ -12,7 +9,7 @@ export const getListRap = () => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_RAP,
-        payload: res.data,
+        payload: res.data
       });
     } catch (err) {
       console.log(err);
@@ -28,7 +25,7 @@ export const getListCumRap = (maHeThongRap, maNhom) => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_CUM_RAP,
-        payload: res.data,
+        payload: res.data
       });
     } catch (err) {
       console.log(err);
