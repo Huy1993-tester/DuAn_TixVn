@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -19,8 +20,10 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.35.1",
     "slick-carousel": "^1.8.1",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^1.0.1",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.10",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
