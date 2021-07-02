@@ -4,11 +4,8 @@ import { TableCell, TableContainer } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getMovie } from "../../store/core/service/actionGetListMovie";
-import {
-  getListCumRap,
-  getListRap,
-} from "../../store/core/service/actionGetListRap";
+import { getMovie } from "../../store/action/movie.action";
+import { getListCumRap, getListRap } from "../../store/action/cinema.action";
 function TableBlock() {
   const dispatch = useDispatch();
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getListMovie } from "../../store/core/service/actionGetListMovie";
+import { getListMovie } from "../../store/action/movie.action";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -16,11 +16,11 @@ import { Container } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    padding: 10,
+    padding: 10
   },
   media: {
-    height: 140,
-  },
+    height: 140
+  }
 });
 function HomeMovie() {
   const classes = useStyles();
@@ -63,7 +63,7 @@ function HomeMovie() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    rows: 2,
+    rows: 2
   };
   return (
     <div className="HomeMovie">

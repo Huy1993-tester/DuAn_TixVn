@@ -3,7 +3,7 @@ import {
   GET_USER_LIST_PAGINATION,
   SET_USER_DETAIL
 } from "../constant/user.constant";
-import { DOMAIN } from "../contance/global/contAction";
+import { DOMAIN } from "../../core/global/constant";
 
 export const setUserDetailAction = (user) => {
   console.log(user);

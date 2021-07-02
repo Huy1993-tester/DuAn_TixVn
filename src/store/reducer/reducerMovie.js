@@ -1,15 +1,10 @@
-import {
-  GET_LIST_CUM_RAP,
-  GET_LIST_MOVIE,
-  GET_LIST_RAP,
-  GET_MOVIE,
-} from "../contance/global/contAction";
-
+import { GET_LIST_MOVIE, GET_MOVIE } from "../constant/movie.constant";
+import { GET_LIST_CUM_RAP, GET_LIST_RAP } from "../constant/cinema.constant";
 const initailState = {
   list_movie: [],
   list_rap: [],
   list_cum_rap: [],
-  list_phim: [],
+  list_phim: []
 };
 
 export const ReducerMovie = (state = initailState, action) => {
