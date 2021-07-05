@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const UserModal = ({ openModel, handleClose, handleAction, isUpdating }) => {
+const UserModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
   const classes = useStyles();
 
   const { taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung, hoTen } =
@@ -76,7 +76,7 @@ const UserModal = ({ openModel, handleClose, handleAction, isUpdating }) => {
   return (
     <Modal
       className={classes.modal}
-      open={openModel}
+      open={openModal}
       onClose={handleCloseModal}
       closeAfterTransition
       BackdropComponent={Backdrop}
@@ -84,7 +84,7 @@ const UserModal = ({ openModel, handleClose, handleAction, isUpdating }) => {
         timeout: 500
       }}
     >
-      <Slide direction="down" in={openModel}>
+      <Slide direction="down" in={openModal}>
         <Paper className={classes.paper}>
           <Grid container justify="space-between">
             <h2 id="transition-modal-title" style={{ paddingLeft: "8px" }}>
