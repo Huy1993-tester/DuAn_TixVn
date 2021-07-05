@@ -1,4 +1,5 @@
 import {
+  GET_DETAIL_MOVIE,
   GET_LIST_MOVIE,
   GET_MOVIE,
   GET_MOVIE_LIST_PAGINATION
@@ -9,6 +10,7 @@ const initailState = {
   list_rap: [],
   list_cum_rap: [],
   list_phim: [],
+  detail_movie: {},
   movieListPagination: [],
   totalPages: 0,
   movieDetail: {}
@@ -33,6 +35,8 @@ export const ReducerMovie = (state = initailState, action) => {
       state.list_phim = payload;
       return { ...state };
     }
+    case GET_DETAIL_MOVIE: {
+      state.detail_movie = payload;
     case GET_MOVIE_LIST_PAGINATION: {
       state.movieListPagination = [...payload.items];
       state.totalPages = payload.totalPages;
