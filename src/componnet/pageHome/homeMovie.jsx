@@ -6,26 +6,24 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Slider from "react-slick";
-import { Container } from "@material-ui/core";
+import { CardContent, CardMedia, Container } from "@material-ui/core";
+import { NavLink, useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    padding: 10
+    padding: 10,
   },
   media: {
-    height: 140
-  }
+    height: 140,
+  },
 });
 function HomeMovie() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   useEffect(() => {
     dispatch(getListMovie());
   }, [dispatch]);
@@ -43,17 +41,15 @@ function HomeMovie() {
               image={movie.hinhAnh}
               title="Click me"
             />
+
             <CardContent>
               <Typography gutterBottom variant="h5" component="h4">
                 {movie.tenPhim}
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
+          {/* <Button onClick={()=>{history.push(`/detail/${movie.maPhim}`)}}>Learn</Button> */}
+          <NavLink to={`/detail/${movie.maPhim}`}>Learn More</NavLink>
         </Card>
       );
     });
@@ -63,7 +59,7 @@ function HomeMovie() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    rows: 2
+    rows: 2,
   };
   return (
     <div className="HomeMovie">

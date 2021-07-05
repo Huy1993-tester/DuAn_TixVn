@@ -1,4 +1,8 @@
-import { GET_LIST_MOVIE, GET_MOVIE } from "../constant/movie.constant";
+import {
+  GET_DETAIL_MOVIE,
+  GET_LIST_MOVIE,
+  GET_MOVIE,
+} from "../constant/movie.constant";
 import { api } from "../../core/service/api.service";
 
 export const getListMovie = () => {
@@ -9,7 +13,7 @@ export const getListMovie = () => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_MOVIE,
-        payload: res.data
+        payload: res.data,
       });
     } catch (err) {
       console.log(err.status);
@@ -20,6 +24,22 @@ export const getListMovie = () => {
 export const getMovie = (ds1) => {
   return {
     type: GET_MOVIE,
-    payload: ds1
+    payload: ds1,
+  };
+};
+
+export const getDetailMovie = (maPhim) => {
+  let url = `api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`;
+  let method = "GET";
+  return async (dispatch) => {
+    try {
+      const res = await api.get(url, method);
+      dispatch({
+        type: GET_DETAIL_MOVIE,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 };

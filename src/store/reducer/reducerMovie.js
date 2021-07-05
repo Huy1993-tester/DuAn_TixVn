@@ -1,10 +1,15 @@
-import { GET_LIST_MOVIE, GET_MOVIE } from "../constant/movie.constant";
+import {
+  GET_DETAIL_MOVIE,
+  GET_LIST_MOVIE,
+  GET_MOVIE,
+} from "../constant/movie.constant";
 import { GET_LIST_CUM_RAP, GET_LIST_RAP } from "../constant/cinema.constant";
 const initailState = {
   list_movie: [],
   list_rap: [],
   list_cum_rap: [],
-  list_phim: []
+  list_phim: [],
+  detail_movie: {},
 };
 
 export const ReducerMovie = (state = initailState, action) => {
@@ -24,6 +29,10 @@ export const ReducerMovie = (state = initailState, action) => {
     }
     case GET_MOVIE: {
       state.list_phim = payload;
+      return { ...state };
+    }
+    case GET_DETAIL_MOVIE: {
+      state.detail_movie = payload;
       return { ...state };
     }
     default: {
