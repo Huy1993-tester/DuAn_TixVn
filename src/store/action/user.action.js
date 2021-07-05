@@ -1,9 +1,8 @@
-import axios from "axios";
 import {
   GET_USER_LIST_PAGINATION,
   SET_USER_DETAIL
 } from "../constant/user.constant";
-import { DOMAIN } from "../../core/global/constant";
+import { userService } from "../../core/service/user.service";
 
 export const setUserDetailAction = (user) => {
   console.log(user);
@@ -17,10 +16,11 @@ export const getUserListPaginationAction = (
 ) => {
   return async (dispatch) => {
     try {
-      const response = await axios({
-        url: `${DOMAIN}/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=${groupID}&soTrang=${pageNumber}&soPhanTuTrenTrang=${itemPerPageNumber}`,
-        method: "GET"
-      });
+      const response = await userService.getUserListPagination(
+        groupID,
+        pageNumber,
+        itemPerPageNumber
+      );
       dispatch({
         type: GET_USER_LIST_PAGINATION,
         payload: response.data
@@ -34,14 +34,7 @@ export const getUserListPaginationAction = (
 export const addUserAction = (user) => {
   return async () => {
     try {
-      return await axios({
-        url: `${DOMAIN}/api/QuanLyNguoiDung/ThemNguoiDung`,
-        method: "POST",
-        data: { ...user },
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGFuaG4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJRdWFuVHJpIiwibmJmIjoxNjI1MDM2NTI5LCJleHAiOjE2MjUwNDAxMjl9.3-NV6J-FhB0p2bhAjFOvBCQKIdBdc3EONir5RXq-7Ug`
-        }
-      });
+      return await userService.addUser(user);
     } catch (error) {
       return error.response;
     }
@@ -51,15 +44,8 @@ export const addUserAction = (user) => {
 export const deleteUserAction = (taiKhoan) => {
   return async () => {
     try {
-      return await axios({
-        url: `${DOMAIN}/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGFuaG4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJRdWFuVHJpIiwibmJmIjoxNjI1MDM2NTI5LCJleHAiOjE2MjUwNDAxMjl9.3-NV6J-FhB0p2bhAjFOvBCQKIdBdc3EONir5RXq-7Ug`
-        }
-      });
+      return await userService.deleteUser(taiKhoan);
     } catch (error) {
-      console.log(error.response);
       return error.response;
     }
   };
@@ -69,14 +55,7 @@ export const updateUserAction = (user) => {
   return async (dispatch) => {
     dispatch(setUserDetailAction({}));
     try {
-      return await axios({
-        url: `${DOMAIN}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
-        method: "PUT",
-        data: { ...user },
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGFuaG4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJRdWFuVHJpIiwibmJmIjoxNjI1MDM2NTI5LCJleHAiOjE2MjUwNDAxMjl9.3-NV6J-FhB0p2bhAjFOvBCQKIdBdc3EONir5RXq-7Ug`
-        }
-      });
+      return await userService.updateUser(user);
     } catch (error) {
       return error.response;
     }
@@ -91,17 +70,18 @@ export const searchUserPaginationAction = (
 ) => {
   return async (dispatch) => {
     try {
-      const response = await axios({
-        url: `${DOMAIN}/api/QuanLyNguoiDung/TimKiemNguoiDungPhanTrang?MaNhom=${groupID}&tuKhoa=${searchString}&soTrang=${pageNumber}&soPhanTuTrenTrang=${itemPerPageNumber}`,
-        method: "GET"
-      });
-      console.log(response);
+      const response = await userService.searchUserPagination(
+        searchString,
+        groupID,
+        pageNumber,
+        itemPerPageNumber
+      );
       dispatch({
         type: GET_USER_LIST_PAGINATION,
         payload: response.data
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       return error.response;
     }
   };

@@ -27,7 +27,7 @@ const User = () => {
 
   const [itemPerPageNumber, setItemPerPageNumber] = useState(5);
 
-  const [openModel, setOpenModel] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,11 +38,11 @@ const User = () => {
   const [searchString, setSearchString] = useState("");
 
   const handleOpenModal = () => {
-    setOpenModel(true);
+    setOpenModal(true);
   };
 
   const handleCloseModal = () => {
-    setOpenModel(false);
+    setOpenModal(false);
     setIsUpdating(false);
     dispatch(setUserDetailAction({}));
   };
@@ -75,7 +75,7 @@ const User = () => {
           button: false,
           timer: 2000
         });
-        setOpenModel(false);
+        setOpenModal(false);
         dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
         return true;
       } else {
@@ -154,7 +154,7 @@ const User = () => {
   const handleEditUser = (user) => {
     dispatch(setUserDetailAction(user));
     setIsUpdating(true);
-    setOpenModel(true);
+    setOpenModal(true);
   };
 
   const handleUpdateUser = async (user) => {
@@ -168,7 +168,7 @@ const User = () => {
           button: false,
           timer: 2000
         });
-        setOpenModel(false);
+        setOpenModal(false);
         setIsUpdating(false);
         return true;
       } else {
@@ -218,7 +218,7 @@ const User = () => {
 
       {/* Modal */}
       <UserModal
-        openModel={openModel}
+        openModal={openModal}
         handleClose={handleCloseModal}
         handleAction={isUpdating ? handleUpdateUser : handleAddUser}
         isUpdating={isUpdating}
