@@ -5,7 +5,9 @@ import swal from "sweetalert";
 import {
   addMovieAction,
   deleteMovieAction,
-  getMovieListPaginationAction
+  getMovieListPaginationAction,
+  setMovieDetailAction,
+  updateMovieAction
 } from "../../../store/action/movie.action";
 import DataTable from "../../components/data-table/dataTable.component";
 import MovieModal from "../../components/movie-modal/movieModal.component";
@@ -28,6 +30,8 @@ const Movie = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
+  const [isUpdating, setIsUpdating] = useState(false);
+
   const handleChangeItem = (event) => {
     setItemPerPageNumber(event.target.value);
   };
@@ -43,10 +47,12 @@ const Movie = () => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+    setIsUpdating(false);
+    dispatch(setMovieDetailAction({}));
   };
 
-  const handleAddMovie = (movie) => {
-    dispatch(addMovieAction(movie)).then((r) => {
+  const handleAddMovie = async (movie) => {
+    return await dispatch(addMovieAction(movie)).then((r) => {
       console.log(r);
       if (r.status === 200) {
         swal({
@@ -110,10 +116,42 @@ const Movie = () => {
       }
     });
   };
+
+  const handleEditMovie = (movie) => {
+    dispatch(setMovieDetailAction(movie));
+    setOpenModal(true);
+    setIsUpdating(true);
+  };
+
+  const handleUpdateMovie = (movie) => {
+    dispatch(updateMovieAction(movie)).then((r) => {
+      if (r.status === 200) {
+        swal({
+          title: "Success!",
+          text: "Cập nhật thành công!",
+          icon: "success",
+          button: false,
+          timer: 2000
+        });
+        setOpenModal(false);
+        setIsUpdating(false);
+        dispatch(setMovieDetailAction({}));
+      } else {
+        swal({
+          title: "Unsuccess!",
+          text: r.data,
+          icon: "error",
+          buttons: "OK",
+          dangerMode: true
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     setCurrentPage(1);
     dispatch(getMovieListPaginationAction("GP01", 1, itemPerPageNumber));
-  }, [itemPerPageNumber]);
+  }, [itemPerPageNumber, isUpdating]);
 
   return (
     <div>
@@ -124,6 +162,7 @@ const Movie = () => {
         dataListPagination={movieListPagination}
         handleDelete={handleDeleteMovie}
         deleteObjectKey="maPhim"
+        handleEdit={handleEditMovie}
       />
       <CommonPagination
         totalPages={totalPages}
@@ -135,7 +174,8 @@ const Movie = () => {
       <MovieModal
         openModal={openModal}
         handleClose={handleCloseModal}
-        handleAction={handleAddMovie}
+        handleAction={isUpdating ? handleUpdateMovie : handleAddMovie}
+        isUpdating={isUpdating}
       />
     </div>
   );
