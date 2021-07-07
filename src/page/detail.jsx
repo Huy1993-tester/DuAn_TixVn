@@ -11,7 +11,8 @@ import TabPanel from "@material-ui/lab/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import ReactPlayer from "react-player/youtube";
-import { Button, Container, Table } from "@material-ui/core";
+import {Container, Table } from "@material-ui/core";
+import rating from '../asset/image/rate.gif';
 import * as React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -115,23 +116,15 @@ export function Detail() {
             )}
           </div>
           <div>
-            <div class="page">
-              <div class="clearfix">
-                <div class="c100 p50 big green">
-                  <span>50%</span>
-                  <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                  </div>
-                </div>
-              </div>
+            <div class="icon_Rating">
+              <img src={rating} alt="" height='200px' />
             </div>
             <div className={classes.root2}>
               <Rating
                 name="hover-feedback"
                 value={"5"}
                 precision={1}
-                style={{ left: "50%" }}
+                style={{ left: "20%" }}
               />
             </div>
           </div>
