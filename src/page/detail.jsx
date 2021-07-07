@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailMovie } from "../store/action/movie.action";
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "@material-ui/core";
+import { DataGrid } from "@material-ui/data-grid";
 import TabContext from "@material-ui/lab/TabContext";
 import TabList from "@material-ui/lab/TabList";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,6 +10,9 @@ import Tab from "@material-ui/core/Tab";
 import TabPanel from "@material-ui/lab/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import ReactPlayer from "react-player/youtube";
+import { Button, Container, Table } from "@material-ui/core";
+import * as React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -26,30 +29,90 @@ export function Detail() {
   let { maPhim } = useParams();
   const dispatch = useDispatch();
   var dateFormat = require("dateformat");
-  const detailMovie = useSelector((state) => {
-    return state.movie.detail_movie;
-  });
 
   useEffect(() => {
     dispatch(getDetailMovie(maPhim));
-  }, [dispatch]);
-
+  });
+  const detailMovie = useSelector((state) => {
+    return state.movie?.detail_movie;
+  });
   const classes = useStyles();
-  const [value, setValue] = React.useState('TH');
+  const [value, setValue] = React.useState("TH");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
- 
+  const [showVideo, setShowVideo] = useState(false);
+  const handleShowVide = () => {
+    setShowVideo(!showVideo);
+  };
+  const columns = [
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "tenRap", headerName: "Tên Rạp", width: 150 },
+    { field: "maHeThongRap", headerName: "Mã HTR", width: 150 },
+    { field: "maRap", headerName: "Mã Rạp", width: 150 },
+    { field: "giaVe", headerName: "Giá vé", width: 150 },
+    { field: "thoiLuong", headerName: "Thời gian", width: 150 },
+    { field: "ngayChieu", headerName: "Lịch chiếu", width: 150 },
+  ];
+
+  const renderRap = () => {
+    return detailMovie?.lichChieu?.map((lichChieu, index) => {
+      let rap = lichChieu.thongTinRap;
+      return {
+        id: index,
+        tenRap: rap.tenRap,
+        maHeThongRap: rap.maHeThongRap,
+        maRap: rap.maRap,
+        giaVe: lichChieu.giaVe,
+        thoiLuong: lichChieu.thoiLuong,
+        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu,'dd/mm/yyyy'),
+      };
+    });
+  };
+
   return (
     <>
       <img className="backGroundDetail" src={detailMovie.hinhAnh} />
       <Container className="children">
         <div className="detail_movie">
-          <img src={detailMovie.hinhAnh} alt="" height="400px" width="300px" />
+          {showVideo ? (
+            <ReactPlayer
+              url={detailMovie.trailer}
+              width="300px"
+              height="400px"
+              auto
+            />
+          ) : (
+            <a href="#">
+              <img
+                src={detailMovie.hinhAnh}
+                alt=""
+                width="300px"
+                height="400px"
+              />
+            </a>
+          )}
           <div className="detail_movie_child">
             <h3>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h3>
             <h3>{detailMovie.tenPhim}</h3>
             <h3>2D/Digital</h3>
+            {showVideo ? (
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => handleShowVide()}
+              >
+                Đóng Trailer
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={() => handleShowVide()}
+              >
+                Xem Trailer
+              </button>
+            )}
           </div>
           <div>
             <div class="page">
@@ -66,9 +129,9 @@ export function Detail() {
             <div className={classes.root2}>
               <Rating
                 name="hover-feedback"
-                value={'5'}
+                value={"5"}
                 precision={1}
-                style={{left:'50%'}}
+                style={{ left: "50%" }}
               />
             </div>
           </div>
@@ -83,6 +146,7 @@ export function Detail() {
             >
               <Tab label="THÔNG TIN" value="TH" />
               <Tab label="ĐÁNH GIÁ" value="DG" />
+              <Tab label="rẠP CHIẾU" value="THR" />
             </TabList>
           </AppBar>
 
@@ -104,6 +168,19 @@ export function Detail() {
           </TabPanel>
           <TabPanel value="DG" className="detail_text">
             <h3>{detailMovie.danhGia}</h3>
+          </TabPanel>
+          <TabPanel value="THR" className="detail_tableInfo">
+            <Table>
+              <Container>
+                <div style={{ height: 400, width: "100%" }}>
+                  <DataGrid
+                    columns={columns}
+                    rows={renderRap()}
+                    pageSize={10}
+                  />
+                </div>
+              </Container>
+            </Table>
           </TabPanel>
         </TabContext>
       </Container>

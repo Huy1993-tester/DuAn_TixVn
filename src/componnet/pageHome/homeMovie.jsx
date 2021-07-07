@@ -9,8 +9,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
 import Slider from "react-slick";
 import { CardContent, CardMedia, Container } from "@material-ui/core";
-import { NavLink, useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { NavLink} from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -23,7 +22,6 @@ const useStyles = makeStyles({
 function HomeMovie() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
   useEffect(() => {
     dispatch(getListMovie());
   }, [dispatch]);
@@ -48,7 +46,6 @@ function HomeMovie() {
               </Typography>
             </CardContent>
           </CardActionArea>
-          {/* <Button onClick={()=>{history.push(`/detail/${movie.maPhim}`)}}>Learn</Button> */}
           <NavLink to={`/detail/${movie.maPhim}`}>Learn More</NavLink>
         </Card>
       );
