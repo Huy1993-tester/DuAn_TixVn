@@ -30,6 +30,17 @@ class MovieService {
       }
     });
   };
+
+  updateMovie = (data) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyPhim/CapNhatPhimUpload`,
+      method: "POST",
+      data,
+      headers: {
+        Authorization: `Bearer ${TOKEN}`
+      }
+    });
+  };
 }
 
 export const movieService = new MovieService();

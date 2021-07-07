@@ -2,7 +2,8 @@ import {
   GET_DETAIL_MOVIE,
   GET_LIST_MOVIE,
   GET_MOVIE,
-  GET_MOVIE_LIST_PAGINATION
+  GET_MOVIE_LIST_PAGINATION,
+  SET_MOVIE_DETAIL
 } from "../constant/movie.constant";
 import { api } from "../../core/service/api.service";
 import { movieService } from "../../core/service/movie.service";
@@ -15,7 +16,7 @@ export const getListMovie = () => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_MOVIE,
-        payload: res.data,
+        payload: res.data
       });
     } catch (err) {
       console.log(err.status);
@@ -26,7 +27,7 @@ export const getListMovie = () => {
 export const getMovie = (ds1) => {
   return {
     type: GET_MOVIE,
-    payload: ds1,
+    payload: ds1
   };
 };
 
@@ -38,7 +39,7 @@ export const getDetailMovie = (maPhim) => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_DETAIL_MOVIE,
-        payload: res.data,
+        payload: res.data
       });
     } catch (err) {
       console.log(err);
@@ -94,5 +95,19 @@ export const deleteMovieAction = (maPhim) => {
       return error.response;
     }
   };
-  //
+};
+
+export const setMovieDetailAction = (movie) => {
+  console.log(movie);
+  return { type: SET_MOVIE_DETAIL, payload: movie };
+};
+
+export const updateMovieAction = (movie) => {
+  return async () => {
+    try {
+      return await movieService.updateMovie(movie);
+    } catch (error) {
+      return error.response;
+    }
+  };
 };

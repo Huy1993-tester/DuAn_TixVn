@@ -61,7 +61,7 @@ const UserModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
     },
     onSubmit: async (values, { resetForm }) => {
       if (await handleAction(values)) {
-        setTimeout(resetForm, 700);
+        setTimeout(resetForm, 1000);
       }
     },
     validationSchema: userValidationSchema,

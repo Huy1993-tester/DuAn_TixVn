@@ -25,6 +25,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useSelector } from "react-redux";
 import { userValidationSchema } from "../../helper/userValidationSchema";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 const useStyles = makeStyles((theme) => ({
   buttonOutlineNone: {
@@ -47,6 +48,16 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     width: "100%",
     padding: theme.spacing(0, 1)
+  },
+  formImage: {
+    marginLeft: theme.spacing(1),
+    border: `2px dashed ${theme.palette.action.active}`,
+    borderRadius: "10px",
+    height: "112px",
+    width: "112px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   }
 }));
 
@@ -55,19 +66,31 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
 
   const [dateTime, setDateTime] = useState(new Date());
 
+  const {
+    maPhim,
+    tenPhim,
+    biDanh,
+    trailer,
+    hinhAnh,
+    moTa,
+    maNhom,
+    ngayKhoiChieu,
+    danhGia
+  } = useSelector((state) => state.movie.movieDetail);
+
   const formik = useFormik({
     initialValues: {
-      maPhim: "",
-      tenPhim: "",
-      biDanh: "",
-      trailer: "",
-      hinhAnh: "",
-      moTa: "",
+      maPhim,
+      tenPhim,
+      biDanh,
+      trailer,
+      hinhAnh,
+      moTa,
       maNhom: "GP01",
-      ngayKhoiChieu: dateTime,
-      danhGia: ""
+      ngayKhoiChieu: isUpdating ? ngayKhoiChieu : dateTime,
+      danhGia
     },
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       const movieFormData = new FormData();
 
       for (var key in values) {
@@ -78,7 +101,9 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
         }
       }
 
-      handleAction(movieFormData);
+      if (await handleAction(movieFormData)) {
+        setTimeout(resetForm, 1000);
+      }
     },
     // validationSchema: userValidationSchema,
     enableReinitialize: true
@@ -94,7 +119,7 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
   };
 
   const handleChooseImage = (e) => {
-    console.log(e.target.files);
+    console.log(e.target.files.mozFullPath);
     if (e.target.files[0]) {
       formik.setFieldValue("hinhAnh", e.target.files[0]);
     } else {
@@ -130,24 +155,10 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
             <Grid container spacing={2}>
               <Grid item container xs={12} justify="space-between">
                 <Grid item xs={6}>
-                  <FormControl className={classes.formControl}>
-                    <TextField
-                      label="Mã Phim"
-                      name="maPhim"
-                      onBlur={formik.handleBlur}
-                      onChange={formik.handleChange}
-                      value={formik.values.maPhim}
-                      error={formik.touched.maPhim && formik.errors.maPhim}
-                      helperText={
-                        formik.touched.maPhim ? formik.errors.maPhim : ""
-                      }
-                      // disabled={isUpdating}
-                      disabled
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6}>
-                  <FormControl className={classes.formControl}>
+                  <FormControl
+                    className={classes.formControl}
+                    style={{ marginBottom: "8px" }}
+                  >
                     <TextField
                       label="Tên Phim"
                       name="tenPhim"
@@ -160,28 +171,10 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                       }
                     />
                   </FormControl>
-                </Grid>
-              </Grid>
-
-              <Grid item container xs={12} justify="space-between">
-                <Grid item xs={6}>
-                  <FormControl className={classes.formControl}>
-                    <TextField
-                      label="Bí danh"
-                      name="biDanh"
-                      onBlur={formik.handleBlur}
-                      onChange={formik.handleChange}
-                      value={formik.values.biDanh}
-                      error={formik.touched.biDanh && formik.errors.biDanh}
-                      helperText={
-                        formik.touched.biDanh ? formik.errors.biDanh : ""
-                      }
-                      disabled
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6}>
-                  <FormControl className={classes.formControl}>
+                  <FormControl
+                    className={classes.formControl}
+                    style={{ marginTop: "8px" }}
+                  >
                     <TextField
                       label="Đánh giá"
                       name="danhGia"
@@ -195,8 +188,27 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={6}>
+                  {formik.values.hinhAnh ? (
+                    <img
+                      src={
+                        typeof formik.values.hinhAnh === "string"
+                          ? formik.values.hinhAnh
+                          : URL.createObjectURL(formik.values.hinhAnh)
+                      }
+                      style={{
+                        height: "112px",
+                        marginLeft: "8px",
+                        borderRadius: "10px"
+                      }}
+                    ></img>
+                  ) : (
+                    <FormControl className={classes.formImage}>
+                      <AddPhotoAlternateIcon fontSize="large" color="action" />
+                    </FormControl>
+                  )}
+                </Grid>
               </Grid>
-
               <Grid item container xs={12} justify="space-between">
                 <Grid item xs={6}>
                   <MuiPickersUtilsProvider utils={DayJsUtils}>
@@ -228,7 +240,11 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                     <TextField
                       label="Hình ảnh"
                       value={
-                        formik.values.hinhAnh ? formik.values.hinhAnh.name : ""
+                        formik.values.hinhAnh
+                          ? typeof formik.values.hinhAnh === "object"
+                            ? formik.values.hinhAnh.name
+                            : formik.values.hinhAnh
+                          : ""
                       }
                       InputProps={{
                         endAdornment: (
