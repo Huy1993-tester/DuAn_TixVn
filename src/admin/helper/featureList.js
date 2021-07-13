@@ -21,13 +21,13 @@ export const featureList = [
     url: "/admin/movie",
     component: <Movie />,
     icon: <MovieIcon />
-  },
-  {
-    id: "showtime",
-    title: "Showtime management",
-    title_VN: "Quản lý Lịch chiếu",
-    url: "/admin/showtime",
-    component: <Showtime />,
-    icon: <TheatersIcon />
   }
+  // {
+  //   id: "showtime",
+  //   title: "Showtime management",
+  //   title_VN: "Quản lý Lịch chiếu",
+  //   url: "/admin/showtime",
+  //   component: <Showtime />,
+  //   icon: <TheatersIcon />
+  // }
 ];
