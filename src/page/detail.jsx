@@ -11,19 +11,19 @@ import TabPanel from "@material-ui/lab/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import ReactPlayer from "react-player/youtube";
-import {Container, Table } from "@material-ui/core";
-import rating from '../asset/image/rate.gif';
+import { Container, Table } from "@material-ui/core";
+import rating from "../asset/image/rate.gif";
 import * as React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    justifyItems: "center",
+    justifyItems: "center"
   },
   root2: {
     width: 200,
     display: "flex",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 }));
 
 export function Detail() {
@@ -53,7 +53,7 @@ export function Detail() {
     { field: "maRap", headerName: "Mã Rạp", width: 150 },
     { field: "giaVe", headerName: "Giá vé", width: 150 },
     { field: "thoiLuong", headerName: "Thời gian", width: 150 },
-    { field: "ngayChieu", headerName: "Lịch chiếu", width: 150 },
+    { field: "ngayChieu", headerName: "Lịch chiếu", width: 150 }
   ];
 
   const renderRap = () => {
@@ -66,7 +66,7 @@ export function Detail() {
         maRap: rap.maRap,
         giaVe: lichChieu.giaVe,
         thoiLuong: lichChieu.thoiLuong,
-        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu,'dd/mm/yyyy'),
+        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu, "dd/mm/yyyy")
       };
     });
   };
@@ -117,7 +117,7 @@ export function Detail() {
           </div>
           <div>
             <div class="icon_Rating">
-              <img src={rating} alt="" height='200px' />
+              <img src={rating} alt="" height="200px" />
             </div>
             <div className={classes.root2}>
               <Rating

@@ -14,7 +14,6 @@ function App() {
           <Detail />
           <Footer />
         </Route>
-        <Route path="/admin/:feature" component={Dashboard} />
         <Route path="/admin" component={Dashboard} />
         {/* Page not found */}
         <Route path="">

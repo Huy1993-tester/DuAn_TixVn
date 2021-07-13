@@ -52,8 +52,7 @@ export const deleteUserAction = (taiKhoan) => {
 };
 
 export const updateUserAction = (user) => {
-  return async (dispatch) => {
-    dispatch(setUserDetailAction({}));
+  return async () => {
     try {
       return await userService.updateUser(user);
     } catch (error) {
