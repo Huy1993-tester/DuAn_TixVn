@@ -9,9 +9,10 @@ import { featureList } from "../../helper/featureList";
 export const mainListItems = () => {
   return (
     <>
-      {featureList.map((feature) => {
+      {featureList.map((feature, i) => {
         return (
           <NavLink
+            key={i}
             className={style.sidebar__link}
             activeClassName={`${style.sidebar__link__active}`}
             to={feature.url}

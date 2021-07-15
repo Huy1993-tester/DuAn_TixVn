@@ -4,12 +4,10 @@ import {
   makeStyles,
   InputBase,
   Button,
-  Typography,
-  FormControl
+  Typography
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
-import { TextField } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   buttonOutlineNone: {
     "&:focus": {

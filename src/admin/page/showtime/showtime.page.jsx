@@ -1,44 +1,19 @@
-import {
-  Button,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField
-} from "@material-ui/core";
-import {
-  Divider,
-  FormControl,
-  Grid,
-  makeStyles,
-  Typography
-} from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { Divider, makeStyles, Typography } from "@material-ui/core";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-  KeyboardDateTimePicker
-} from "@material-ui/pickers";
-import DayJsUtils from "@date-io/dayjs";
-import DataTable from "../../components/data-table/dataTable.component";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailMovie } from "../../../store/action/movie.action";
 import { DataGrid } from "@material-ui/data-grid";
 import * as dayjs from "dayjs";
-import {
-  getCinemaGroupListAction,
-  getCinemaListAction,
-  getCinemaSystemListAction
-} from "../../../store/action/cinema.action";
+import ShowtimeForm from "../../components/showtime-form/showtimeForm";
+import swal from "sweetalert";
+import { createShowtimeAction } from "../../../store/action/showtime.action";
 
 const useStyles = makeStyles((theme) => ({
   title: {
     textTransform: "uppercase",
     marginBottom: theme.spacing(2)
-  },
-  formControl: {
-    width: "100%",
-    padding: theme.spacing(0, 1)
   }
 }));
 
@@ -47,52 +22,46 @@ const Showtime = () => {
   const { lichChieu, tenPhim } = useSelector(
     (state) => state.movie.detail_movie
   );
-  // const { cinemaSystemList, cinemaGroupList, cinemaList } = useSelector(
-  //   (state) => state.cinema
-  // );
-  const cinemaSystemList = useSelector(
-    (state) => state.cinema.cinemaSystemList
-  );
-  const cinemaGroupList = useSelector((state) => state.cinema.cinemaGroupList);
-  const cinemaList = useSelector((state) => state.cinema.cinemaList);
 
   const classes = useStyles();
   const { maPhim } = useParams();
-  const [datetime, setDatetime] = useState(new Date());
-  const [cinemaSystemCode, setCinemaSystemCode] = useState();
-  const [cinemaGroupCode, setCinemaGroupCode] = useState();
 
   const columns = [
     { field: "id", headerName: "ID", width: 150, hide: true },
-    { field: "maLichChieu", headerName: "Mã lịch chiếu", width: 140 },
-    { field: "heThongRap", headerName: "Hệ thống rạp", width: 140 },
-    { field: "cumRap", headerName: "Cụm rạp", width: 200 },
-    { field: "rap", headerName: "Rạp", width: 90 },
+    { field: "maLichChieu", headerName: "Mã lịch chiếu", flex: 1.4 },
+    { field: "heThongRap", headerName: "Hệ thống rạp", flex: 1.4 },
+    { field: "cumRap", headerName: "Cụm rạp", flex: 2 },
+    { field: "rap", headerName: "Rạp", flex: 0.9 },
     {
       field: "ngayChieuGioChieu",
       headerName: "Lịch chiếu",
-      width: 220,
+      flex: 2.2,
       valueFormatter: (params) => {
         return dayjs(params.value).format("HH:mm - DD/MM/YYYY");
       }
     },
-    { field: "giaVe", headerName: "Giá vé", width: 100 },
-    { field: "thoiLuong", headerName: "Thời lượng", width: 150 },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      renderCell: (params) => {
-        const onClick = () => {
-          console.log(params.getValue(params.id, "maLichChieu"));
-        };
-        return (
-          <Button onClick={onClick} color="secondary" variant="contained">
-            Xóa
-          </Button>
-        );
-      }
-    }
+    { field: "giaVe", headerName: "Giá vé", flex: 1 },
+    { field: "thoiLuong", headerName: "Thời lượng", flex: 1.5 }
+    // {
+    //   field: "action",
+    //   headerName: "Action",
+    //   flex: 1.5,
+    //   renderCell: (params) => {
+    //     const onClick = () => {
+    //       handleEdit(params.getValue(params.id, "maLichChieu"));
+    //     };
+    //     return (
+    //       <Button
+    //         disabled
+    //         onClick={onClick}
+    //         color="secondary"
+    //         variant="contained"
+    //       >
+    //         Sửa
+    //       </Button>
+    //     );
+    //   }
+    // }
   ];
 
   const renderShowtime = () => {
@@ -110,50 +79,46 @@ const Showtime = () => {
     });
   };
 
-  const renderCinemaSystemList = () => {
-    return cinemaSystemList?.map((s) => (
-      <MenuItem value={s.maHeThongRap}>{s.tenHeThongRap}</MenuItem>
-    ));
+  const handleSubmit = async (values) => {
+    const data = {
+      ...values,
+      ngayChieuGioChieu: dayjs(values.ngayChieuGioChieu).format(
+        "DD/MM/YYYY HH:mm:ss"
+      )
+    };
+    return await dispatch(createShowtimeAction(data)).then((r) => {
+      console.log(r);
+      if (r.status === 200) {
+        swal({
+          title: "Success!",
+          text: "Thêm phim thành công",
+          icon: "success",
+          button: false,
+          timer: 2000
+        });
+        dispatch(getDetailMovie(maPhim));
+        return true;
+      } else {
+        swal({
+          title: "Unsuccess!",
+          text: r.data,
+          icon: "error",
+          buttons: "OK",
+          dangerMode: true
+        });
+        return false;
+      }
+    });
   };
 
-  const renderCinemaGroupList = () => {
-    return cinemaGroupList?.map((g) => (
-      <MenuItem value={g.maCumRap}>{g.tenCumRap}</MenuItem>
-    ));
-  };
-
-  const renderCinemaList = () => {
-    return cinemaList?.map((c) => (
-      <MenuItem value={c.maRap}>{c.tenRap}</MenuItem>
-    ));
-  };
-
-  // *** Hanlde event
-  const handleChangeCinemaSystemList = (e) => {
-    setCinemaSystemCode(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handleChangeCinemaGroupList = (e) => {
-    setCinemaGroupCode(e.target.value);
-  };
-
-  const handleCinemaList = (e) => {
-    console.log(e.target.value);
-  };
+  // const handleEdit = (maLichChieu) => {
+  //   const showtime = lichChieu.find((l) => l.maLichChieu === maLichChieu);
+  //   dispatch(setShowtimeDetail(showtime));
+  // };
 
   useEffect(() => {
     dispatch(getDetailMovie(maPhim));
-    dispatch(getCinemaSystemListAction());
   }, []);
-
-  useEffect(() => {
-    dispatch(getCinemaGroupListAction(cinemaSystemCode));
-  }, [cinemaSystemCode]);
-
-  useEffect(() => {
-    dispatch(getCinemaListAction(cinemaGroupCode));
-  }, [cinemaGroupCode]);
 
   return (
     <div>
@@ -168,93 +133,7 @@ const Showtime = () => {
 
       <Divider />
 
-      <form style={{ margin: "16px auto", width: "70%" }}>
-        <Grid container spacing={2}>
-          <Grid item container xs={12}>
-            <Grid item xs={4}>
-              <FormControl fullWidth className={classes.formControl}>
-                <InputLabel style={{ left: "8px" }} id="cinema-system-list">
-                  Chọn hệ thống rạp
-                </InputLabel>
-                <Select
-                  labelId="cinema-system-list"
-                  name="cinemaSystemList"
-                  onChange={handleChangeCinemaSystemList}
-                >
-                  {renderCinemaSystemList()}
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={4}>
-              <FormControl fullWidth className={classes.formControl}>
-                <InputLabel style={{ left: "8px" }} id="cinema-group">
-                  Chọn cụm rạp
-                </InputLabel>
-                <Select
-                  labelId="cinema-group"
-                  name="cinemaGroup"
-                  onChange={handleChangeCinemaGroupList}
-                >
-                  {renderCinemaGroupList()}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={2}>
-              <FormControl fullWidth className={classes.formControl}>
-                <InputLabel style={{ left: "8px" }} id="cinema">
-                  Chọn rạp
-                </InputLabel>
-                <Select
-                  labelId="cinema"
-                  name="cinema"
-                  onChange={handleCinemaList}
-                >
-                  {renderCinemaList()}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={2} container alignItems="flex-end">
-              <FormControl className={classes.formControl}>
-                <Button variant="contained" color="primary">
-                  Thêm Lịch
-                </Button>
-              </FormControl>
-            </Grid>
-          </Grid>
-          <Grid item container xs={12}>
-            <Grid item xs={4}>
-              <MuiPickersUtilsProvider utils={DayJsUtils}>
-                <FormControl fullWidth className={classes.formControl}>
-                  <KeyboardDateTimePicker
-                    variant="inline"
-                    ampm={false}
-                    label="Ngày chiếu - Giờ chiếu"
-                    format="DD/MM/YYYY HH:mm"
-                    value={datetime}
-                    onChange={setDatetime}
-                  />
-                </FormControl>
-              </MuiPickersUtilsProvider>
-            </Grid>
-            <Grid item xs={4}>
-              <FormControl fullWidth className={classes.formControl}>
-                <TextField label="Chọn thời lượng phim" name="soDt" />
-              </FormControl>
-            </Grid>
-            <Grid item xs={2}>
-              <FormControl fullWidth className={classes.formControl}>
-                <TextField label="Giá vé" name="soDt" />
-              </FormControl>
-            </Grid>
-            <Grid item xs={2} container alignItems="flex-end">
-              <FormControl fullwidth className={classes.formControl}>
-                <Button variant="contained">Hủy</Button>
-              </FormControl>
-            </Grid>
-          </Grid>
-        </Grid>
-      </form>
+      <ShowtimeForm maPhim={maPhim} handleSubmit={handleSubmit} />
 
       <div style={{ height: 300, width: "100%" }}>
         <DataGrid

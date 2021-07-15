@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useFormik, Formik, ErrorMessage, Form } from "formik";
+import React from "react";
+import { useFormik } from "formik";
 import {
   Grid,
   makeStyles,
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const UserModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
   const classes = useStyles();
 
-  const { taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung, hoTen } =
+  const { taiKhoan, matKhau, email, soDt, maLoaiNguoiDung, hoTen } =
     useSelector((state) => state.user.userDetail);
 
   const formik = useFormik({

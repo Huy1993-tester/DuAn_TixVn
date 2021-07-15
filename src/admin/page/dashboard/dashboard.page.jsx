@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { Redirect, useParams, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Header from "../../components/header/header.component";
 import Sidebar from "../../components/sidebar/sidebar.component";
 import Content from "../../components/content/content.component";
