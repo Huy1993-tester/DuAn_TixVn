@@ -55,12 +55,14 @@ const Content = (props) => {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Switch>
-                {featureList.map((feature) => {
-                  return <Route path={feature.url}>{feature.component}</Route>;
+                {featureList.map((feature, i) => {
+                  return (
+                    <Route key={i} path={feature.url}>
+                      {feature.component}
+                    </Route>
+                  );
                 })}
-                <Route path={`${path}/:maPhim`} component={Showtime}>
-                  <Showtime />
-                </Route>
+                <Route path={`${path}/:maPhim`} component={Showtime} />
                 <Route exact path="/admin">
                   Dashboard
                 </Route>

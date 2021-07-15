@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useFormik, Formik, ErrorMessage, Form } from "formik";
+import React, { useState } from "react";
+import { useFormik } from "formik";
 import {
   Grid,
   makeStyles,
   IconButton,
-  Select,
   FormControl,
-  MenuItem,
-  InputLabel,
   Button,
   Backdrop,
   Modal,
@@ -23,7 +20,6 @@ import DayJsUtils from "@date-io/dayjs";
 import * as dayjs from "dayjs";
 import CloseIcon from "@material-ui/icons/Close";
 import { useSelector } from "react-redux";
-import { userValidationSchema } from "../../helper/userValidationSchema";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
@@ -73,7 +69,6 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
     trailer,
     hinhAnh,
     moTa,
-    maNhom,
     ngayKhoiChieu,
     danhGia
   } = useSelector((state) => state.movie.movieDetail);

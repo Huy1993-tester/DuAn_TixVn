@@ -1,9 +1,9 @@
 import User from "../page/user/user.page";
 import Movie from "../page/movie/movie.page";
-import Showtime from "../page/showtime/showtime.page";
+// import Showtime from "../page/showtime/showtime.page";
 import PeopleIcon from "@material-ui/icons/People";
 import MovieIcon from "@material-ui/icons/Movie";
-import TheatersIcon from "@material-ui/icons/Theaters";
+// import TheatersIcon from "@material-ui/icons/Theaters";
 
 export const featureList = [
   {
