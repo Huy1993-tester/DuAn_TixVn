@@ -14,7 +14,7 @@ const initailState = {
   detail_movie: {},
   movieListPagination: [],
   totalPages: 0,
-  movieDetail: {}
+  movieDetail: {},
 };
 
 export const ReducerMovie = (state = initailState, action) => {

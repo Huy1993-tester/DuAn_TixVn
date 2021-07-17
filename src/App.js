@@ -4,6 +4,8 @@ import Home from "./page/home";
 import Dashboard from "./admin/page/dashboard/dashboard.page";
 import { Detail } from "./page/detail";
 import Footer from "./componnet/footer";
+import Booking from "./page/booking";
+import Chairing from "./page/chairing";
 
 function App() {
   return (
@@ -14,6 +16,10 @@ function App() {
           <Detail />
           <Footer />
         </Route>
+        <Route path="/chairing/:maLichChieu">
+          <Chairing />
+        </Route>
+        <Route path="/admin/:feature" component={Dashboard} />
         <Route path="/admin" component={Dashboard} />
         {/* Page not found */}
         <Route path="">
