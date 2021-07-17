@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    top: "-150px!important"
+    top: "-50px!important"
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -114,7 +114,6 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
   };
 
   const handleChooseImage = (e) => {
-    console.log(e.target.files.mozFullPath);
     if (e.target.files[0]) {
       formik.setFieldValue("hinhAnh", e.target.files[0]);
     } else {
@@ -277,10 +276,6 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.trailer}
-                    error={formik.touched.trailer && formik.errors.trailer}
-                    helperText={
-                      formik.touched.trailer ? formik.errors.trailer : ""
-                    }
                   />
                 </FormControl>
               </Grid>
@@ -293,11 +288,8 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                     multiline={true}
                     rows={4}
                     rowsMax={6}
-                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.moTa}
-                    error={formik.touched.moTa && formik.errors.moTa}
-                    helperText={formik.touched.moTa ? formik.errors.moTa : ""}
                   />
                 </FormControl>
               </Grid>

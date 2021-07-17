@@ -53,7 +53,6 @@ const Movie = () => {
 
   const handleAddMovie = async (movie) => {
     return await dispatch(addMovieAction(movie)).then((r) => {
-      console.log(r);
       if (r.status === 200) {
         swal({
           title: "Success!",
@@ -63,6 +62,7 @@ const Movie = () => {
           timer: 2000
         });
         setOpenModal(false);
+        setCurrentPage(1);
         dispatch(getMovieListPaginationAction("GP01", 1, itemPerPageNumber));
         return true;
       } else {

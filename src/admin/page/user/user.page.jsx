@@ -76,6 +76,7 @@ const User = () => {
           timer: 2000
         });
         setOpenModal(false);
+        setCurrentPage(1);
         dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
         return true;
       } else {
@@ -140,7 +141,6 @@ const User = () => {
 
     setSearchString(event.target.value);
     setIsSearching(true);
-    console.log(searchString);
     dispatch(
       searchUserPaginationAction(
         event.target.value,
