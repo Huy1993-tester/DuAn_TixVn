@@ -8,6 +8,16 @@ class ApiService {
       method: `${method}`
     });
   };
+  post = function (url,method,info,token){
+    return axios({
+      url:`${DOMAIN}/${url}`,
+      method:`${method}`,
+      data:`${info}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
 }
 
 export let api = new ApiService();

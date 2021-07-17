@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getDetailMovie } from "../store/action/movie.action";
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@material-ui/data-grid";
@@ -11,8 +11,8 @@ import TabPanel from "@material-ui/lab/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import ReactPlayer from "react-player/youtube";
-import {Container, Table } from "@material-ui/core";
-import rating from '../asset/image/rate.gif';
+import { Button, Container, Table } from "@material-ui/core";
+import rating from "../asset/image/rate.gif";
 import * as React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function Detail() {
   let { maPhim } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   var dateFormat = require("dateformat");
 
@@ -49,24 +50,45 @@ export function Detail() {
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "tenRap", headerName: "Tên Rạp", width: 150 },
-    { field: "maHeThongRap", headerName: "Mã HTR", width: 150 },
+    { field: "maLichChieu", headerName: "Mã Lịch Chiếu", width: 150 },
     { field: "maRap", headerName: "Mã Rạp", width: 150 },
     { field: "giaVe", headerName: "Giá vé", width: 150 },
     { field: "thoiLuong", headerName: "Thời gian", width: 150 },
     { field: "ngayChieu", headerName: "Lịch chiếu", width: 150 },
+    {
+      field: "",
+      headerName: "Đặt lịch",
+      with: 150,
+      sortable: false,
+      disableClickEventBubbling: true,
+      renderCell: (params) => {
+          const onclick = () => {
+            history.push(`/chairing/${params.row.maLichChieu}`)
+          };
+  
+        return (
+          <button className="btn btn-success" onClick={() => onclick()}>
+            Click
+          </button>
+        );
+      },
+    },
   ];
 
   const renderRap = () => {
+    var element = document.createElement("a");
+    element.href = "a";
+    element.innerHTML = "EDIT";
     return detailMovie?.lichChieu?.map((lichChieu, index) => {
       let rap = lichChieu.thongTinRap;
       return {
         id: index,
         tenRap: rap.tenRap,
-        maHeThongRap: rap.maHeThongRap,
+        maLichChieu: lichChieu.maLichChieu,
         maRap: rap.maRap,
         giaVe: lichChieu.giaVe,
         thoiLuong: lichChieu.thoiLuong,
-        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu,'dd/mm/yyyy'),
+        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu, "dd/mm/yyyy"),
       };
     });
   };
@@ -114,10 +136,17 @@ export function Detail() {
                 Xem Trailer
               </button>
             )}
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => history.push(`/booking/${maPhim}`)}
+            >
+              Đặt vé
+            </button>
           </div>
           <div>
             <div class="icon_Rating">
-              <img src={rating} alt="" height='200px' />
+              <img src={rating} alt="" height="200px" />
             </div>
             <div className={classes.root2}>
               <Rating
