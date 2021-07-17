@@ -1,10 +1,13 @@
 import {
-  GET_LIST_CHAIR,
+  GET_CINEMA_GROUP_LIST,
+  GET_CINEMA_LIST,
+  GET_CINEMA_SYSTEM_LIST,
   GET_LIST_CUM_RAP,
-  GET_LIST_RAP,
+  GET_LIST_RAP
 } from "../constant/cinema.constant";
 import { api } from "../../core/service/api.service";
 import { STATUS_CODE } from "../../core/global/constant";
+import { cinemaService } from "../../core/service/cinema.service";
 
 export const getListRap = () => {
   let url = "api/QuanLyRap/LayThongTinHeThongRap";
@@ -51,7 +54,21 @@ export const getListChair = (id) => {
         payload: res.data,
       });
     } catch (err) {
-      console.log(err);
+      console.log(err)
+    }
+  }
+};
+  
+export const getCinemaSystemListAction = () => {
+  return async (dispatch) => {
+    try {
+      const response = await cinemaService.getCinemaSystemList();
+      dispatch({
+        type: GET_CINEMA_SYSTEM_LIST,
+        payload: response.data
+      });
+    } catch (error) {
+      console.log(error.response);
     }
   };
 };
@@ -67,7 +84,6 @@ export const BookingChair = (maLichChieu,danhSachVe) => {
   };
   console.log(data)
   let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYXN1a2ExOTk3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUXVhblRyaSIsIm5iZiI6MTYyNjUzNjAzNywiZXhwIjoxNjI2NTM5NjM3fQ.YaxomH4iG8SoRooQ8qjNDPQ0JS9rgP2xtsezJOxSILw";
-
   return async (dispatch) => {
     try {
      const response = await api.post(url, method, data, token);
@@ -75,5 +91,25 @@ export const BookingChair = (maLichChieu,danhSachVe) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+export const getCinemaGroupListAction = (maHeThongRap) => {
+  return async (dispatch) => {
+    try {
+      const response = await cinemaService.getCinemaGroupList(maHeThongRap);
+      dispatch({
+        type: GET_CINEMA_GROUP_LIST,
+        payload: response.data
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
+
+export const getCinemaListAction = (maCumRap) => {
+  return {
+    type: GET_CINEMA_LIST,
+    payload: maCumRap
   };
 };

@@ -16,9 +16,6 @@ function App() {
           <Detail />
           <Footer />
         </Route>
-        <Route path="/booking/:idMovie">
-          <Booking />
-        </Route>
         <Route path="/chairing/:maLichChieu">
           <Chairing />
         </Route>

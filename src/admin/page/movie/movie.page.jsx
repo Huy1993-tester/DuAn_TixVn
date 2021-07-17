@@ -53,7 +53,6 @@ const Movie = () => {
 
   const handleAddMovie = async (movie) => {
     return await dispatch(addMovieAction(movie)).then((r) => {
-      console.log(r);
       if (r.status === 200) {
         swal({
           title: "Success!",
@@ -63,6 +62,7 @@ const Movie = () => {
           timer: 2000
         });
         setOpenModal(false);
+        setCurrentPage(1);
         dispatch(getMovieListPaginationAction("GP01", 1, itemPerPageNumber));
         return true;
       } else {
@@ -136,6 +136,9 @@ const Movie = () => {
         setOpenModal(false);
         setIsUpdating(false);
         dispatch(setMovieDetailAction({}));
+        dispatch(
+          getMovieListPaginationAction("GP01", currentPage, itemPerPageNumber)
+        );
       } else {
         swal({
           title: "Unsuccess!",
@@ -151,7 +154,7 @@ const Movie = () => {
   useEffect(() => {
     setCurrentPage(1);
     dispatch(getMovieListPaginationAction("GP01", 1, itemPerPageNumber));
-  }, [itemPerPageNumber, isUpdating]);
+  }, [itemPerPageNumber]);
 
   return (
     <div>
@@ -163,6 +166,7 @@ const Movie = () => {
         handleDelete={handleDeleteMovie}
         deleteObjectKey="maPhim"
         handleEdit={handleEditMovie}
+        isMovie={true}
       />
       <CommonPagination
         totalPages={totalPages}

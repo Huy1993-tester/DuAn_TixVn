@@ -9,11 +9,11 @@ export const movieFieldList = [
     name_VN: "Tên Phim",
     width: "10%"
   },
-  {
-    key: "biDanh",
-    name_VN: "Bí Danh",
-    width: "10%"
-  },
+  // {
+  //   key: "biDanh",
+  //   name_VN: "Bí Danh",
+  //   width: "10%"
+  // },
   {
     key: "trailer",
     name_VN: "Trailer",
@@ -32,11 +32,11 @@ export const movieFieldList = [
   {
     key: "ngayKhoiChieu",
     name_VN: "Ngày Khởi Chiếu",
-    width: "10%"
-  },
-  {
-    key: "danhGia",
-    name_VN: "Đánh Giá",
-    width: "10%"
+    width: "15%"
   }
+  // {
+  //   key: "danhGia",
+  //   name_VN: "Đánh Giá",
+  //   width: "10%"
+  // }
 ];

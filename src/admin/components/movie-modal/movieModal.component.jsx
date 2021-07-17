@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useFormik, Formik, ErrorMessage, Form } from "formik";
+import React, { useState } from "react";
+import { useFormik } from "formik";
 import {
   Grid,
   makeStyles,
   IconButton,
-  Select,
   FormControl,
-  MenuItem,
-  InputLabel,
   Button,
   Backdrop,
   Modal,
@@ -23,7 +20,6 @@ import DayJsUtils from "@date-io/dayjs";
 import * as dayjs from "dayjs";
 import CloseIcon from "@material-ui/icons/Close";
 import { useSelector } from "react-redux";
-import { userValidationSchema } from "../../helper/userValidationSchema";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
@@ -37,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    top: "-150px!important"
+    top: "-50px!important"
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -73,7 +69,6 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
     trailer,
     hinhAnh,
     moTa,
-    maNhom,
     ngayKhoiChieu,
     danhGia
   } = useSelector((state) => state.movie.movieDetail);
@@ -119,7 +114,6 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
   };
 
   const handleChooseImage = (e) => {
-    console.log(e.target.files.mozFullPath);
     if (e.target.files[0]) {
       formik.setFieldValue("hinhAnh", e.target.files[0]);
     } else {
@@ -282,10 +276,6 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.trailer}
-                    error={formik.touched.trailer && formik.errors.trailer}
-                    helperText={
-                      formik.touched.trailer ? formik.errors.trailer : ""
-                    }
                   />
                 </FormControl>
               </Grid>
@@ -298,11 +288,8 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                     multiline={true}
                     rows={4}
                     rowsMax={6}
-                    onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.moTa}
-                    error={formik.touched.moTa && formik.errors.moTa}
-                    helperText={formik.touched.moTa ? formik.errors.moTa : ""}
                   />
                 </FormControl>
               </Grid>

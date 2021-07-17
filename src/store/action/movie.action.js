@@ -78,7 +78,6 @@ export const getMovieListPaginationAction = (
 export const addMovieAction = (movie) => {
   return async () => {
     try {
-      console.log(movie.get("ngayKhoiChieu"));
       return await movieService.addMovie(movie);
     } catch (error) {
       return error.response;
@@ -89,7 +88,6 @@ export const addMovieAction = (movie) => {
 export const deleteMovieAction = (maPhim) => {
   return async () => {
     try {
-      console.log(typeof maPhim);
       return await movieService.deleteMovie(maPhim);
     } catch (error) {
       return error.response;
@@ -98,7 +96,6 @@ export const deleteMovieAction = (maPhim) => {
 };
 
 export const setMovieDetailAction = (movie) => {
-  console.log(movie);
   return { type: SET_MOVIE_DETAIL, payload: movie };
 };
 

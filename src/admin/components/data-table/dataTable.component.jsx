@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import { Button } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   buttonOutlineNone: {
@@ -32,7 +34,8 @@ const DataTable = ({
   dataListPagination,
   handleDelete,
   handleEdit,
-  deleteObjectKey
+  deleteObjectKey,
+  isMovie
 }) => {
   const classes = useStyles();
 
@@ -92,20 +95,40 @@ const DataTable = ({
                         </TableCell>
                       );
                     })}
+                    {isMovie ? (
+                      <TableCell className={classes.tableCellBody}>
+                        <NavLink
+                          to={`/admin/showtime/${data[`${deleteObjectKey}`]}`}
+                        >
+                          <Button
+                            className={classes.buttonOutlineNone}
+                            size="small"
+                            variant="outlined"
+                            color="primary"
+                          >
+                            Lịch chiếu
+                          </Button>
+                        </NavLink>
+                      </TableCell>
+                    ) : (
+                      ""
+                    )}
                     <TableCell className={classes.tableCellBody}>
                       <IconButton
-                        color="secondary"
-                        className={classes.buttonOutlineNone}
-                        onClick={() => handleDelete(data[`${deleteObjectKey}`])}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                      <IconButton
+                        title="Sửa"
                         color="primary"
                         className={classes.buttonOutlineNone}
                         onClick={() => handleEdit(data)}
                       >
                         <EditIcon />
+                      </IconButton>
+                      <IconButton
+                        title="Xóa"
+                        color="secondary"
+                        className={classes.buttonOutlineNone}
+                        onClick={() => handleDelete(data[`${deleteObjectKey}`])}
+                      >
+                        <DeleteIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>

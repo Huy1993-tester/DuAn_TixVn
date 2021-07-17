@@ -76,6 +76,7 @@ const User = () => {
           timer: 2000
         });
         setOpenModal(false);
+        setCurrentPage(1);
         dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
         return true;
       } else {
@@ -140,7 +141,6 @@ const User = () => {
 
     setSearchString(event.target.value);
     setIsSearching(true);
-    console.log(searchString);
     dispatch(
       searchUserPaginationAction(
         event.target.value,
@@ -157,9 +157,8 @@ const User = () => {
     setOpenModal(true);
   };
 
-  const handleUpdateUser = async (user) => {
-    return await dispatch(updateUserAction(user)).then((r) => {
-      console.log(r);
+  const handleUpdateUser = (user) => {
+    dispatch(updateUserAction(user)).then((r) => {
       if (r.status === 200) {
         swal({
           title: "Success!",
@@ -170,7 +169,10 @@ const User = () => {
         });
         setOpenModal(false);
         setIsUpdating(false);
-        return true;
+        dispatch(setUserDetailAction({}));
+        dispatch(
+          getUserListPaginationAction("GP01", currentPage, itemPerPageNumber)
+        );
       } else {
         swal({
           title: "Unsuccess!",
@@ -179,7 +181,6 @@ const User = () => {
           buttons: "OK",
           dangerMode: true
         });
-        return false;
       }
     });
   };
@@ -187,7 +188,7 @@ const User = () => {
   useEffect(() => {
     setCurrentPage(1);
     dispatch(getUserListPaginationAction("GP01", 1, itemPerPageNumber));
-  }, [itemPerPageNumber, isUpdating]);
+  }, [itemPerPageNumber]);
 
   return (
     <div>

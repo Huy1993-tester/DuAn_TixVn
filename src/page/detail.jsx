@@ -11,19 +11,20 @@ import TabPanel from "@material-ui/lab/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import ReactPlayer from "react-player/youtube";
+
 import { Button, Container, Table } from "@material-ui/core";
 import rating from "../asset/image/rate.gif";
 import * as React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    justifyItems: "center",
+    justifyItems: "center"
   },
   root2: {
     width: 200,
     display: "flex",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 }));
 
 export function Detail() {
