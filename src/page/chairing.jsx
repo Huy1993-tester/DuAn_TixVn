@@ -9,12 +9,12 @@ import { CHOISE_CHAIR } from "../store/constant/cinema.constant";
 const useStyle = makeStyles({
   not_pick: {
     backgroundColor: "#12d",
-    "&:hover": "#23dd",
+    "&:hover": "#23dd"
   },
   pick: {
     backgroundColor: "#2ddd",
-    "&:hover": "#2dd",
-  },
+    "&:hover": "#2dd"
+  }
 });
 
 function Chairing() {
@@ -44,12 +44,17 @@ function Chairing() {
   const handleChair = (chair) => {
     dispatch({
       type: CHOISE_CHAIR,
-      payload: chair,
+      payload: chair
     });
   };
   const handleBooking = () => {
     dispatch(BookingChair(maLichChieu, listChairPick));
   };
+
+  useEffect(() => {
+    console.log("TEST UPDATE ======");
+  });
+
   const renderListChair1 = () => {
     return list1?.map((chair, index) => {
       return (
@@ -88,7 +93,10 @@ function Chairing() {
         <div className="col"> {renderListChair1()}</div>
         <div className="col">{renderListChair2()}</div>
       </div>
-      <div className="StyleTableBooking" style={{ textAlign: "center", margin: "30px" }}>
+      <div
+        className="StyleTableBooking"
+        style={{ textAlign: "center", margin: "30px" }}
+      >
         <Button
           className={classes.pick}
           variant="contained"
