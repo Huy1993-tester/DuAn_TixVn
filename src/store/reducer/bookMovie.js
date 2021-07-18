@@ -1,7 +1,7 @@
-import {CHOISE_CHAIR, GET_LIST_CHAIR } from "../constant/cinema.constant";
+import { CHOISE_CHAIR, GET_LIST_CHAIR } from "../constant/cinema.constant";
 
 const initailState = {
-  list_chair: [],
+  list_chair: []
 };
 
 export const BookingMovie = (state = initailState, action) => {
@@ -19,8 +19,8 @@ export const BookingMovie = (state = initailState, action) => {
         let chairOld = DS[index];
         let chairNew = { ...chairOld, onPick: !chairOld.onPick };
         DS[index] = chairNew;
-        state.list_chair.danhSachGhe = DS;
-        console.log(DS[index].onPick)
+        state.list_chair.danhSachGhe = [...DS];
+        console.log(DS[index].onPick);
       }
       return { ...state };
     }
