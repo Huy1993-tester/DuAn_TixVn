@@ -1,3 +1,13 @@
+@mixin father($position, $z-index) {
+  position: $position;
+  z-index: $z-index;
+}
+@mixin mother($display, $grid-template-columns, $gap, $transform) {
+  display: $display;
+  grid-template-columns: $grid-template-columns;
+  gap: $gap;
+  transform: $transform;
+}
 
 .backGroundDetail {
   width: 100%;
@@ -23,9 +33,9 @@
   z-index: 3;
   margin-top: 100px;
 }
-.detail_tableInfo{
+.detail_tableInfo {
   margin-top: 70px;
-  transform: translate(10%,0)
+  transform: translate(10%, 0);
 }
 .barTab {
   @include father(absolute, 5);

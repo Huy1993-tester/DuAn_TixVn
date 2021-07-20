@@ -16,29 +16,20 @@ class UserService {
     axios({
       url: `${DOMAIN}/api/QuanLyNguoiDung/ThemNguoiDung`,
       method: "POST",
-      data,
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      data
     });
 
   deleteUser = (taiKhoan) =>
     axios({
       url: `${DOMAIN}/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      method: "DELETE"
     });
 
   updateUser = (data) =>
     axios({
       url: `${DOMAIN}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
       method: "PUT",
-      data,
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      data
     });
 
   searchUserPagination = (
@@ -50,6 +41,13 @@ class UserService {
     axios({
       url: `${DOMAIN}/api/QuanLyNguoiDung/TimKiemNguoiDungPhanTrang?MaNhom=${groupID}&tuKhoa=${searchString}&soTrang=${pageNumber}&soPhanTuTrenTrang=${itemPerPageNumber}`,
       method: "GET"
+    });
+
+  signIn = (data) =>
+    axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/DangNhap`,
+      method: "POST",
+      data
     });
 }
 

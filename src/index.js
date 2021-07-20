@@ -4,10 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Store } from "./store/config/config";
-import {Provider} from "react-redux";
-import './css/style.css';
+import { Provider } from "react-redux";
+import "./css/style.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
+
+axios.interceptors.request.use((r) => {
+  const TOKEN = JSON.parse(localStorage.getItem("accessToken"));
+  if (TOKEN) r.headers["Authorization"] = `Bearer ${TOKEN}`;
+  return r;
+});
 
 ReactDOM.render(
   <Provider store={Store}>

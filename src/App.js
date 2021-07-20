@@ -6,6 +6,9 @@ import { Detail } from "./page/detail";
 import Footer from "./componnet/footer";
 import Booking from "./page/booking";
 import Chairing from "./page/chairing";
+import SignIn from "./page/sign-in/sign-in.page";
+import SignUp from "./page/sign-up/sign-up.page";
+import Guard from "./HOC/guard.hoc";
 
 function App() {
   return (
@@ -19,8 +22,18 @@ function App() {
         <Route path="/chairing/:maLichChieu">
           <Chairing />
         </Route>
-        <Route path="/admin/:feature" component={Dashboard} />
-        <Route path="/admin" component={Dashboard} />
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="/admin/:feature">
+          <Guard>
+            <Dashboard />
+          </Guard>
+        </Route>
+        <Route path="/admin">
+          <Guard>
+            <Dashboard />
+          </Guard>
+        </Route>
         {/* Page not found */}
         <Route path="">
           <Redirect to="/" />
