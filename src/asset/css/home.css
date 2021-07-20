@@ -6,6 +6,7 @@ body {
 .header {
   display: flex;
   justify-content: center;
+  box-shadow: 0 0 15px #0000004d;
 }
 
 .banTayDietQuy {
@@ -45,7 +46,8 @@ body {
   z-index: 1;
 }
 
-.slick-slider.carousel.slick-initialized .slick-next:before, .slick-slider.carousel.slick-initialized .slick-prev:before {
+.slick-slider.carousel.slick-initialized .slick-next:before,
+.slick-slider.carousel.slick-initialized .slick-prev:before {
   font-size: 100px;
 }
 
@@ -91,7 +93,8 @@ body {
   z-index: 1;
 }
 
-.HomeMovie .slick-slider.slick-initialized .slick-next:before, .HomeMovie .slick-slider.slick-initialized .slick-prev:before {
+.HomeMovie .slick-slider.slick-initialized .slick-next:before,
+.HomeMovie .slick-slider.slick-initialized .slick-prev:before {
   font-size: 100px;
   color: #a69f9f6e;
 }
@@ -358,7 +361,8 @@ body {
 }
 
 @media screen and (max-width: 992px) {
-  .slick-slider.carousel.slick-initialized .slick-next:before, .slick-slider.carousel.slick-initialized .slick-prev:before {
+  .slick-slider.carousel.slick-initialized .slick-next:before,
+  .slick-slider.carousel.slick-initialized .slick-prev:before {
     font-size: 50px;
   }
   .homeTool .container {
@@ -413,7 +417,8 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .slick-slider.carousel.slick-initialized .slick-next:before, .slick-slider.carousel.slick-initialized .slick-prev:before {
+  .slick-slider.carousel.slick-initialized .slick-next:before,
+  .slick-slider.carousel.slick-initialized .slick-prev:before {
     font-size: 25px;
   }
   .homeTool .container {
