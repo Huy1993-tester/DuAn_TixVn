@@ -49,6 +49,13 @@ class UserService {
       method: "POST",
       data
     });
+
+  signUp = (data) =>
+    axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/DangKy`,
+      method: "POST",
+      data
+    });
 }
 
 export const userService = new UserService();
