@@ -85,3 +85,21 @@ export const searchUserPaginationAction = (
     }
   };
 };
+
+export const signInSignUpAction = (data, isSignIn) => {
+  return async () => {
+    try {
+      const response = isSignIn
+        ? await userService.signIn(data)
+        : await userService.signUp(data);
+      const { accessToken, taiKhoan, maLoaiNguoiDung, hoTen } = response.data;
+      localStorage.setItem("maLoaiNguoiDung", JSON.stringify(maLoaiNguoiDung));
+      localStorage.setItem("accessToken", JSON.stringify(accessToken));
+      localStorage.setItem("taiKhoan", JSON.stringify(taiKhoan));
+      localStorage.setItem("hoTen", JSON.stringify(hoTen));
+      return response;
+    } catch (error) {
+      return error.response;
+    }
+  };
+};

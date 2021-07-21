@@ -19,7 +19,7 @@ export const getListRap = () => {
       if (STATUS_CODE.SUCCESS === status) {
         dispatch({
           type: GET_LIST_RAP,
-          payload: res.data,
+          payload: res.data
         });
       }
     } catch (err) {
@@ -36,7 +36,7 @@ export const getListCumRap = (maHeThongRap, maNhom) => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_CUM_RAP,
-        payload: res.data,
+        payload: res.data
       });
     } catch (err) {
       console.log(err);
@@ -52,14 +52,14 @@ export const getListChair = (id) => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_CHAIR,
-        payload: res.data,
+        payload: res.data
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 };
-  
+
 export const getCinemaSystemListAction = () => {
   return async (dispatch) => {
     try {
@@ -74,23 +74,25 @@ export const getCinemaSystemListAction = () => {
   };
 };
 
-export const BookingChair = (maLichChieu,danhSachVe) => {
+export const BookingChair = (maLichChieu, danhSachVe) => {
   let url = "api/QuanLyDatVe/DatVe";
   let method = "POST";
-  let taiKhoanNguoiDung = "asuka1997";
+  let taiKhoanNguoiDung = "maiquochuy";
+  let ds = danhSachVe.map((ve) => ({ maGhe: ve.maGhe, giaVe: ve.giaVe }));
   let data = {
-    maLichChieu,
-    danhSachVe,
-    taiKhoanNguoiDung,
+    maLichChieu: parseInt(maLichChieu),
+    danhSachVe: ds,
+    taiKhoanNguoiDung
   };
-  console.log(data)
-  let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYXN1a2ExOTk3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUXVhblRyaSIsIm5iZiI6MTYyNjUzNjAzNywiZXhwIjoxNjI2NTM5NjM3fQ.YaxomH4iG8SoRooQ8qjNDPQ0JS9rgP2xtsezJOxSILw";
+  console.log(data);
+  let token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFpcXVvY2h1eSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IktoYWNoSGFuZyIsIm5iZiI6MTYyNjYxOTcxMCwiZXhwIjoxNjI2NjIzMzEwfQ.9JWvLSdjmi1iycAJ6UBd0csEyrbVfBuh5tHHaHJvLD8";
   return async (dispatch) => {
     try {
-     const response = await api.post(url, method, data, token);
-     console.log(response);
+      const response = await api.post(url, method, data, token);
+      console.log(response);
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
 };

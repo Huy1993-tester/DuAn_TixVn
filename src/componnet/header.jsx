@@ -22,7 +22,10 @@ function Header(props) {
   };
   return (
     <div>
-      <nav id="navbar-example2" className="header navbar navbar-light bg-light">
+      <nav
+        id="navbar-example2"
+        className="header navbar navbar-light bg-light fixed-top"
+      >
         <a className="navbar-brand" href="#">
           <img src={webLogo} alt="" height="50px" width="50px" />
         </a>
@@ -48,6 +51,7 @@ function Header(props) {
             </a>
           </li>
         </ul>
+        {/* <div className={classes.userAria}>{renderUserName()}</div> */}
       </nav>
       {/* <div data-spy="scroll" data-target="#navbar-example2" data-offset={0}>
         <Carousel />
@@ -58,6 +62,7 @@ function Header(props) {
         <h4 id="TinTuc"></h4>
         <NewBlock />
         <h4 id="UngDung"></h4>
+<<<<<<< HEAD
         <HomeApp/>
         <Footer/>
       </div> */}

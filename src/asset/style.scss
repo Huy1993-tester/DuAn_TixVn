@@ -3,6 +3,9 @@
   padding: 0;
   margin: 0;
 }
+// Responsive
+@import "./basicSCSS/responsive.scss";
+
 ///carousel-start
 @import "./basicSCSS/home.scss";
 @import "./basicSCSS/detail.scss";

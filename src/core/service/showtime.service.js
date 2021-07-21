@@ -7,10 +7,7 @@ class ShowtimeService {
     return axios({
       url: `${DOMAIN}/api/QuanLyDatVe/TaoLichChieu`,
       method: "POST",
-      data,
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      data
     });
   };
 }

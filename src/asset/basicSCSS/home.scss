@@ -41,9 +41,10 @@ body {
   transform: $transform;
 }
 ///header
-.header{
+.header {
   display: flex;
   justify-content: center;
+  box-shadow: 0 0 15px #0000004d;
 }
 
 ////Carousel
@@ -64,8 +65,9 @@ $sociacl: banTayDietQuy, trangTi, latMat;
   @include Next-Pre(5%, 0);
 }
 .slick-slider.carousel.slick-initialized {
-  .slick-next:before, .slick-prev:before{
-  font-size: 100px;
+  .slick-next:before,
+  .slick-prev:before {
+    font-size: 100px;
   }
 }
 
@@ -93,7 +95,7 @@ $sociacl: banTayDietQuy, trangTi, latMat;
       color: black;
       font-size: 25px;
     }
-  };
+  }
 }
 
 //////HomeMovie
@@ -101,11 +103,12 @@ $sociacl: banTayDietQuy, trangTi, latMat;
   padding-top: 10%;
   .slick-arrow.slick-prev {
     @include Next-Pre(0, -9%);
-  };
+  }
   .slick-arrow.slick-next {
     @include Next-Pre(0, 102%);
-  };
-  .slick-slider.slick-initialized .slick-next:before, .slick-slider.slick-initialized .slick-prev:before{
+  }
+  .slick-slider.slick-initialized .slick-next:before,
+  .slick-slider.slick-initialized .slick-prev:before {
     font-size: 100px;
     color: #a69f9f6e;
   }
@@ -138,7 +141,7 @@ $sociacl: banTayDietQuy, trangTi, latMat;
   .row {
     img {
       margin: 0 10px 10px 10px;
-    };
+    }
     h5 {
       text-overflow: ellipsis;
       white-space: nowrap;

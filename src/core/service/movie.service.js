@@ -13,10 +13,7 @@ class MovieService {
   deleteMovie = (data) => {
     return axios({
       url: `${DOMAIN}/api/QuanLyPhim/XoaPhim?MaPhim=${data}`,
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      method: "DELETE"
     });
   };
 
@@ -24,10 +21,7 @@ class MovieService {
     return axios({
       url: `${DOMAIN}/api/QuanLyPhim/ThemPhimUploadHinh`,
       method: "POST",
-      data,
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      data
     });
   };
 
@@ -35,10 +29,7 @@ class MovieService {
     return axios({
       url: `${DOMAIN}/api/QuanLyPhim/CapNhatPhimUpload`,
       method: "POST",
-      data,
-      headers: {
-        Authorization: `Bearer ${TOKEN}`
-      }
+      data
     });
   };
 }
