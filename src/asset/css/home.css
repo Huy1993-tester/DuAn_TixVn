@@ -51,6 +51,11 @@ body {
   font-size: 100px;
 }
 
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
 .homeTool .container {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
@@ -63,9 +68,6 @@ body {
   border-radius: 2%;
   box-shadow: 5px;
   background-color: white;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 50%);
 }
 
 .homeTool .container button {

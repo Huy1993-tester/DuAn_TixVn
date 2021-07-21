@@ -1,76 +1,24 @@
-import React, { useState } from "react";
-import Footer from "./footer";
-import Carousel from "./pageHome/carousel";
-import TableBlock from "./pageHome/cinemeBlock";
-import HomeApp from "./pageHome/homeApp";
-import HomeMovie from "./pageHome/homeMovie";
-import NewBlock from "../componnet/pageHome/newBlock";
+import React from "react";
+// import Footer from "./footer";
+// import Carousel from "./pageHome/carousel";
+// import TableBlock from "./pageHome/cinemeBlock";
+// import HomeApp from "./pageHome/homeApp";
+// import HomeMovie from "./pageHome/homeMovie";
+// import NewBlock from "../componnet/pageHome/newBlock";
 import webLogo from "../asset/image/web-logo.png";
-import { NavLink } from "react-router-dom";
-import { makeStyles, Menu, MenuItem } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  userAria: {
-    position: "absolute",
-    top: "50%",
-    right: 0,
-    transform: "translateY(-50%)"
-  },
-  userMenu: {
-    position: "absolute",
-    zIndex: 1,
-    backgroundColor: "#959595",
-    borderRadius: "5px",
-    "& a:hover": {
-      backgroundColor: "#888",
-      borderRadius: "5px"
-    }
-  }
-}));
-function Header() {
-  const classes = useStyles();
-  const [openMenu, setOpenMenu] = useState(false);
-
-  const handleSignout = () => {
-    localStorage.clear();
+function Header(props) {
+  const { handleClick } = props;
+  const click1 = () => {
+    handleClick("LC");
   };
-
-  const renderUserName = () => {
-    const userName = JSON.parse(localStorage.getItem("hoTen"));
-    return userName !== null ? (
-      <a
-        className="nav-link"
-        href="#"
-        onPointerEnter={() => {
-          setOpenMenu(true);
-        }}
-        onPointerLeave={() => {
-          setOpenMenu(false);
-        }}
-      >
-        Xin chào {userName}!{renderMenu()}
-      </a>
-    ) : (
-      <NavLink className="nav-link" to="/sign-in">
-        Đăng nhập
-      </NavLink>
-    );
+  const click2 = () => {
+    handleClick("CR");
   };
-
-  const renderMenu = () => {
-    return openMenu ? (
-      <div className={classes.userMenu}>
-        <a
-          className="dropdown-item text-white"
-          href="#"
-          onClick={handleSignout}
-        >
-          Đăng xuất
-        </a>
-      </div>
-    ) : (
-      ""
-    );
+  const click3 = () => {
+    handleClick("TT");
+  };
+  const click4 = () => {
+    handleClick("UD");
   };
   return (
     <div>
@@ -83,29 +31,29 @@ function Header() {
         </a>
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <a className="nav-link" href="#LichChieu">
+            <a onClick={() => click1()} className="nav-link" href="#LichChieu">
               Lịch chiếu
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#CumRap">
+            <a onClick={() => click2()} className="nav-link" href="#CumRap">
               Cụm rạp
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#TinTuc">
+            <a onClick={() => click3()} className="nav-link" href="#TinTuc">
               Tin tức
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#UngDung">
+            <a onClick={() => click4()} className="nav-link" href="#UngDung">
               Ứng dụng
             </a>
           </li>
         </ul>
-        <div className={classes.userAria}>{renderUserName()}</div>
+        {/* <div className={classes.userAria}>{renderUserName()}</div> */}
       </nav>
-      <div data-spy="scroll" data-target="#navbar-example2" data-offset={0}>
+      {/* <div data-spy="scroll" data-target="#navbar-example2" data-offset={0}>
         <Carousel />
         <h4 id="LichChieu"></h4>
         <HomeMovie />
@@ -114,9 +62,10 @@ function Header() {
         <h4 id="TinTuc"></h4>
         <NewBlock />
         <h4 id="UngDung"></h4>
-        <HomeApp />
-        <Footer />
-      </div>
+<<<<<<< HEAD
+        <HomeApp/>
+        <Footer/>
+      </div> */}
     </div>
   );
 }
