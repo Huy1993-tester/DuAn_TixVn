@@ -86,10 +86,12 @@ export const searchUserPaginationAction = (
   };
 };
 
-export const signInAction = (data) => {
+export const signInSignUpAction = (data, isSignIn) => {
   return async () => {
     try {
-      const response = await userService.signIn(data);
+      const response = isSignIn
+        ? await userService.signIn(data)
+        : await userService.signUp(data);
       const { accessToken, taiKhoan, maLoaiNguoiDung, hoTen } = response.data;
       localStorage.setItem("maLoaiNguoiDung", JSON.stringify(maLoaiNguoiDung));
       localStorage.setItem("accessToken", JSON.stringify(accessToken));

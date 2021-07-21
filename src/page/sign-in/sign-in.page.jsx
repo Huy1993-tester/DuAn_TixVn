@@ -4,7 +4,7 @@ import style from "./sign-in.module.scss";
 import logo from "../../asset/image/group@2x.png";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { signInAction } from "../../store/action/user.action";
+import { signInSignUpAction } from "../../store/action/user.action";
 import swal from "sweetalert";
 
 const SignIn = () => {
@@ -24,7 +24,7 @@ const SignIn = () => {
 
   const handleSubmit = (values) => {
     // dispatch(signInAction(values));
-    dispatch(signInAction(values)).then((r) => {
+    dispatch(signInSignUpAction(values, true)).then((r) => {
       if (r.status === 200) {
         swal({
           title: "Đăng nhập thành công!",
