@@ -1,3 +1,13 @@
+@mixin father($display,$z-index) {
+  display: $display;
+  z-index: $z-index;
+}
+@mixin mother($display,$grid-template-columns,$gap,$transform) {
+  display: $display;
+  grid-template-columns: $grid-template-columns;
+  gap: $gap;
+  transform: $transform;
+}
 
 .backGroundDetail {
   width: 100%;

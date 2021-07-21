@@ -68,6 +68,11 @@ $sociacl: banTayDietQuy, trangTi, latMat;
   font-size: 100px;
   }
 }
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl{
+  padding-right: 0px;
+  padding-left: 0px;
+}
 //////HomeTool
 .homeTool {
   .container {
@@ -81,9 +86,9 @@ $sociacl: banTayDietQuy, trangTi, latMat;
     border-radius: 2%;
     box-shadow: 5px;
     background-color: white;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 50%);
+    // position: absolute;
+    // left: 50%;
+    // transform: translate(-50%, 50%);
     button {
       color: black;
       font-size: 25px;
@@ -245,6 +250,7 @@ $sociacl: banTayDietQuy, trangTi, latMat;
 /////reponsive
 
 @media screen and (max-width: 1200px) {
+
   //carousel
   .slick-slider.carousel.slick-initialized {
     .slick-next:before {
