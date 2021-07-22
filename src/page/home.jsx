@@ -10,21 +10,15 @@ import HomeMovie from "../componnet/pageHome/homeMovie";
 import NewBlock from "../componnet/pageHome/newBlock";
 
 function Home() {
-  let LC = useRef(null);
-  let CR = useRef(null);
-  let TT = useRef(null);
-  let UD = useRef(null);
+  const refs = {
+    LC: useRef(null),
+    CR: useRef(null),
+    TT: useRef(null),
+    UD: useRef(null)
+  };
+
   const handleClick = (params) => {
-    console.log(params);
-    if ((params === "LC")) {
-      tr(LC);
-    } else if ((params === "CR")) {
-      tr(CR);
-    } else if ((params === "TT")) {
-      tr(TT);
-    } else if ((params === "UD")) {
-      tr(UD);
-    }
+    tr(refs[params]);
   };
   const tr = (params) => {
     params.current.scrollIntoView();
@@ -33,16 +27,16 @@ function Home() {
     <div>
       <Header handleClick={handleClick} />
       <Carousel />
-      <div ref={LC}>
+      <div ref={refs.LC}>
         <HomeMovie />
       </div>
-      <div ref={CR}>
+      <div ref={refs.CR}>
         <TableBlock />
       </div>
-      <div ref={TT}>
+      <div ref={refs.TT}>
         <NewBlock />
       </div>
-      <div ref={UD}>
+      <div ref={refs.UD}>
         <HomeApp />
       </div>
       <Footer />

@@ -54,11 +54,15 @@ const SignUp = () => {
     });
   };
 
+  const handleESC = () => {
+    history.push("/home");
+  };
+
   return (
     <div className={style.signIn__section}>
       <div className={style.signIn__container}>
         <div className={style.signUp__content}>
-          <div className={style.esc__button}></div>
+          <div onClick={handleESC} className={style.esc__button}></div>
           <div className={style.content__header}>
             <NavLink to="/home">
               <img className={style.content__image} src={logo} alt="" />
