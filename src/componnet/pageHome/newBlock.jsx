@@ -5,22 +5,22 @@ import Tab from "@material-ui/core/Tab";
 import TabContext from "@material-ui/lab/TabContext";
 import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
-import { CardMedia, Container} from "@material-ui/core";
+import { CardMedia, Container } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    justifyItems: "center",
-  },
+    justifyItems: "center"
+  }
 }));
 export default function NewBlock() {
   const classes = useStyles();
   const [value, setValue] = React.useState("1");
-  const handleChange = (event,newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
-    <div className={classes.root}>
+    <section id="newsBlock" className={classes.root}>
       <Container>
         <TabContext value={value}>
           <AppBar position="static">
@@ -362,6 +362,6 @@ export default function NewBlock() {
           </TabPanel>
         </TabContext>
       </Container>
-    </div>
+    </section>
   );
 }
