@@ -90,7 +90,7 @@ function TableBlock() {
     });
   };
   return (
-    <div>
+    <section id="cinemaBlock">
       <Container>
         <TableContainer>
           <Table>
@@ -108,7 +108,7 @@ function TableBlock() {
           </Table>
         </TableContainer>
       </Container>
-    </div>
+    </section>
   );
 }
 export default TableBlock;

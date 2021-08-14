@@ -4,12 +4,12 @@ import Slider from "react-slick";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
-    maxWidth: "300",
+    maxWidth: "300"
   },
   media: {
     height: 600,
-    width: 300,
-  },
+    width: 300
+  }
 });
 function HomeApp() {
   const classes = useStyles();
@@ -18,10 +18,10 @@ function HomeApp() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: true
   };
   return (
-    <div className="backgroundImage">
+    <section id="appBlock" className="backgroundImage">
       <div>
         <Container>
           <div className="grid">
@@ -95,7 +95,7 @@ function HomeApp() {
           </div>
         </Container>
       </div>
-    </div>
+    </section>
   );
 }
 
