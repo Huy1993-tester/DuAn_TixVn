@@ -9,15 +9,15 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
 import Slider from "react-slick";
 import { CardContent, CardMedia, Container } from "@material-ui/core";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    padding: 10,
+    padding: 10
   },
   media: {
-    height: 140,
-  },
+    height: 140
+  }
 });
 function HomeMovie() {
   const classes = useStyles();
@@ -56,14 +56,14 @@ function HomeMovie() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    rows: 2,
+    rows: 2
   };
   return (
-    <div className="HomeMovie">
+    <section id="filmsBlock" className="HomeMovie">
       <Container>
         <Slider {...settings}>{renderListCardMovie()}</Slider>
       </Container>
-    </div>
+    </section>
   );
 }
 
