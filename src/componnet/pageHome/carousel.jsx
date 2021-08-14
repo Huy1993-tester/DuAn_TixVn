@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import HomeTool from "./homeTool";
+import player from "../../asset/image/play-video.png";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -25,6 +26,7 @@ function SamplePrevArrow(props) {
     />
   );
 }
+
 export default function Carousel() {
   var settings = {
     // dots: true,
@@ -37,14 +39,35 @@ export default function Carousel() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
   return (
+    
     <div>
       <Slider {...settings} className="carousel container-fluid">
-        <div className="banTayDietQuy"></div>
-        <div className="trangTi"></div>
-        <div className="latMat"></div>
+       <a href="https://www.youtube.com/embed/9nyV-pgMX4I" id=""  className="venobox " data-vbtype="video">
+        <div className="banTayDietQuy ">
+         
+        </div>
+        <div className="round">  <img  src={player} alt="" /></div>
+            
+        </a>
+        <a href="https://www.youtube.com/embed/IqIO53nQZ2E"  className="venobox " data-vbtype="video">
+        <div className="trangTi ">
+        </div>
+        <div className="round">  <img  src={player} alt="" /></div>
+       
+        </a> 
+         <a href="https://www.youtube.com/embed/kBY2k3G6LsM"  className="venobox " data-vbtype="video">
+        <div className="latMat ">
+        </div>
+        <div className="round">  <img  src={player} alt="" /></div>
+       
+        </a>
       </Slider>
+      <div className="positionHomeTool">
       <HomeTool />
+      </div>
+     
     </div>
   );
 }

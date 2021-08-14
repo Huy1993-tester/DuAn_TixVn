@@ -28,6 +28,7 @@
     "sass": "^1.35.1",
     "slick-carousel": "^1.8.1",
     "sweetalert": "^2.1.2",
+    "venobox": "^1.9.3",
     "web-vitals": "^1.0.1",
     "yarn": "^1.22.10",
     "yup": "^0.32.9"

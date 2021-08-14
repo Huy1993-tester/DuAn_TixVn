@@ -20,6 +20,7 @@ body {
   height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: 1;
 }
 
 .trangTi {
@@ -27,6 +28,7 @@ body {
   height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: 1;
 }
 
 .latMat {
@@ -34,6 +36,14 @@ body {
   height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.round img {
+  height: 70px;
+  width: 70px;
+  opacity: 2;
+  transform: translate(1050%, -550%);
 }
 
 .slick-arrow.slick-next {
@@ -57,9 +67,19 @@ body {
   font-size: 100px;
 }
 
-.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
   padding-right: 0px;
   padding-left: 0px;
+}
+
+.positionHomeTool {
+  position: absolute;
+  transform: translate(20%, -130%);
 }
 
 .homeTool .container {

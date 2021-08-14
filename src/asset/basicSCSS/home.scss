@@ -55,7 +55,14 @@ $sociacl: banTayDietQuy, trangTi, latMat;
     height: 800px;
     background-size: cover;
     background-repeat: no-repeat;
+    opacity: 1;
   }
+}
+.round img {
+  height: 70px;
+  width: 70px;
+  opacity: 2;
+  transform: translate(1050%, -550%);
 }
 
 .slick-arrow.slick-next {
@@ -71,11 +78,20 @@ $sociacl: banTayDietQuy, trangTi, latMat;
   }
 }
 
-.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl{
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
   padding-right: 0px;
   padding-left: 0px;
 }
 //////HomeTool
+.positionHomeTool{
+  position: absolute;
+  transform: translate(20%,-130%)
+}
 .homeTool {
   .container {
     @include partnerDisplay(grid, auto auto auto auto auto);
@@ -88,9 +104,7 @@ $sociacl: banTayDietQuy, trangTi, latMat;
     border-radius: 2%;
     box-shadow: 5px;
     background-color: white;
-    // position: absolute;
-    // left: 50%;
-    // transform: translate(-50%, 50%);
+
     button {
       color: black;
       font-size: 25px;
@@ -253,7 +267,6 @@ $sociacl: banTayDietQuy, trangTi, latMat;
 /////reponsive
 
 @media screen and (max-width: 1200px) {
-
   //carousel
   .slick-slider.carousel.slick-initialized {
     .slick-next:before {
