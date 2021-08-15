@@ -1,0 +1,44 @@
+.backGroundDetail {
+  margin-top: 38px;
+}
+
+.backGroundDetail img {
+  height: 1000px;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.detailChild {
+  position: absolute;
+  opacity: 1;
+}
+
+.detail_movie {
+  transform: translate(200px, -240%);
+  display: grid;
+  grid-template-columns: auto  auto auto;
+}
+
+.barTab {
+  position: absolute;
+  top: -130%;
+  right: 20%;
+  background-color: rgba(133, 83, 133, 0.493);
+}
+
+.detail_text {
+  position: absolute;
+  display: grid;
+  grid-template-columns: auto auto;
+  top: -100%;
+  left: 45%;
+  gap: 25px;
+}
+
+.detail_table {
+  position: absolute;
+  top: -110%;
+  width: 100%;
+  left: 10%;
+}
+/*# sourceMappingURL=detail.module.css.map */

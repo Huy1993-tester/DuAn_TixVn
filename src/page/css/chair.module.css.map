@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAA;EACA,UAAU,EAAC,EAAE;CAChB",
+    "sources": [
+        "../chair/chair.module.scss"
+    ],
+    "names": [],
+    "file": "chair.module.css"
+}

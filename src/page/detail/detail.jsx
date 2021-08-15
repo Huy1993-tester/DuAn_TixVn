@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { getDetailMovie } from "../store/action/movie.action";
+import { getDetailMovie } from "../../store/action/movie.action";
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@material-ui/data-grid";
 import TabContext from "@material-ui/lab/TabContext";
@@ -11,20 +11,20 @@ import TabPanel from "@material-ui/lab/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import ReactPlayer from "react-player/youtube";
-
-import { Button, Container, Table } from "@material-ui/core";
-import rating from "../asset/image/rate.gif";
+import { Container, Table } from "@material-ui/core";
+import rating from "../../asset/image/rate.gif";
 import * as React from "react";
+import style from "./detail.module.scss";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    justifyItems: "center"
+    justifyItems: "center",
   },
   root2: {
     width: 200,
     display: "flex",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 }));
 
 export function Detail() {
@@ -63,10 +63,10 @@ export function Detail() {
       sortable: false,
       disableClickEventBubbling: true,
       renderCell: (params) => {
-          const onclick = () => {
-            history.push(`/chairing/${params.row.maLichChieu}`)
-          };
-  
+        const onclick = () => {
+          history.push(`/chairing/${params.row.maLichChieu}`);
+        };
+
         return (
           <button className="btn btn-success" onClick={() => onclick()}>
             Click
@@ -96,55 +96,59 @@ export function Detail() {
 
   return (
     <>
-      <img className="backGroundDetail" src={detailMovie.hinhAnh} />
-      <Container className="children">
-        <div className="detail_movie">
-          {showVideo ? (
-            <ReactPlayer
-              url={detailMovie.trailer}
-              width="300px"
-              height="400px"
-              auto
-            />
-          ) : (
-            <a href="#">
-              <img
-                src={detailMovie.hinhAnh}
-                alt=""
+      <div className={style.backGroundDetail}>
+        <img src={detailMovie.hinhAnh} />
+      </div>
+      <Container className={style.detailChild}>
+        <div className={style.detail_movie}>
+          
+            {showVideo ? (
+              <ReactPlayer
+                url={detailMovie.trailer}
                 width="300px"
                 height="400px"
+                auto
               />
-            </a>
-          )}
-          <div className="detail_movie_child">
-            <h3>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h3>
-            <h3>{detailMovie.tenPhim}</h3>
-            <h3>2D/Digital</h3>
-            {showVideo ? (
+            ) : (
+              <a href="#">
+                <img
+                  src={detailMovie.hinhAnh}
+                  alt=""
+                  width="300px"
+                  height="400px"
+                />
+              </a>
+            )}
+            <div className="detail_movie_child">
+              <h3>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h3>
+              <h3>{detailMovie.tenPhim}</h3>
+              <h3>2D/Digital</h3>
+              {showVideo ? (
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => handleShowVide()}
+                >
+                  Đóng Trailer
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => handleShowVide()}
+                >
+                  Xem Trailer
+                </button>
+              )}
               <button
                 type="button"
                 className="btn btn-danger"
-                onClick={() => handleShowVide()}
+                // onClick={() => history.push(`/booking/${maPhim}`)}
               >
-                Đóng Trailer
+                Đặt vé
               </button>
-            ) : (
-              <button
-                type="button"
-                className="btn btn-success"
-                onClick={() => handleShowVide()}
-              >
-                Xem Trailer
-              </button>
-            )}
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={() => history.push(`/booking/${maPhim}`)}
-            >
-              Đặt vé
-            </button>
-          </div>
+            </div>
+          
           <div>
             <div class="icon_Rating">
               <img src={rating} alt="" height="200px" />
@@ -160,10 +164,11 @@ export function Detail() {
           </div>
         </div>
 
-        <TabContext value={value} className="barTab">
+        <TabContext value={value} >
+          
           <AppBar position="static">
             <TabList
-              className="barTab"
+              className={style.barTab}
               onChange={handleChange}
               aria-label="simple tabs example"
             >
@@ -173,26 +178,26 @@ export function Detail() {
             </TabList>
           </AppBar>
 
-          <TabPanel value="TH" className="detail_text">
+          <TabPanel value="TH" className={style.detail_text}>
             <div>
               <h5>Ngày khởi chiếu</h5>
               <h5>Tên Phim</h5>
               <h5>Định dạng</h5>
+              <h4>Nội dung</h4>
             </div>
             <div>
               <h5>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h5>
               <h5>{detailMovie.tenPhim}</h5>
               <h5>2D/Digital</h5>
-            </div>
-            <div>
-              <h4>Nội dung</h4>
               <h5>{detailMovie.moTa}</h5>
             </div>
+            <div>       
+            </div>
           </TabPanel>
-          <TabPanel value="DG" className="detail_text">
-            <h3>{detailMovie.danhGia}</h3>
+          <TabPanel value="DG" className={style.detail_text}>
+            <h3>{detailMovie.danhGia}/10 </h3>
           </TabPanel>
-          <TabPanel value="THR" className="detail_tableInfo">
+          <TabPanel value="THR" className={style.detail_table}>
             <Table>
               <Container>
                 <div style={{ height: 400, width: "100%" }}>
@@ -205,6 +210,7 @@ export function Detail() {
               </Container>
             </Table>
           </TabPanel>
+         
         </TabContext>
       </Container>
     </>

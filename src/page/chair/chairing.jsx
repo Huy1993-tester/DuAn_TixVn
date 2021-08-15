@@ -1,23 +1,25 @@
 import { Button, makeStyles } from "@material-ui/core";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { BookingChair, getListChair } from "../store/action/cinema.action";
+import { BookingChair, getListChair } from "../../store/action/cinema.action";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { CHOISE_CHAIR } from "../store/constant/cinema.constant";
-
+import { useParams, useHistory } from "react-router-dom";
+import { CHOISE_CHAIR } from "../../store/constant/cinema.constant";
+import style from "./chair.module.scss";
+import swal from "sweetalert";
 const useStyle = makeStyles({
   not_pick: {
     backgroundColor: "#12d",
-    "&:hover": "#23dd"
+    "&:hover": "#23dd",
   },
   pick: {
     backgroundColor: "#2ddd",
-    "&:hover": "#2dd"
-  }
+    "&:hover": "#2dd",
+  },
 });
 
 function Chairing() {
+  const history = useHistory();
   const classes = useStyle();
   const dispatch = useDispatch();
   const { maLichChieu } = useParams();
@@ -44,11 +46,32 @@ function Chairing() {
   const handleChair = (chair) => {
     dispatch({
       type: CHOISE_CHAIR,
-      payload: chair
+      payload: chair,
     });
   };
+  let maLoaiNguoiDung = localStorage.getItem("maLoaiNguoiDung");
+
   const handleBooking = () => {
-    dispatch(BookingChair(maLichChieu, listChairPick));
+    if (maLoaiNguoiDung === "KhachHang") {
+      dispatch(BookingChair(maLichChieu, listChairPick));
+    } else {
+      swal({
+        title: "Are you sure?",
+        text: "Vui lòng đăng nhập",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal( history.push("/sign-in"));
+        } else {
+          swal( {
+            title: "Are you sure?",
+            text: "Bạn sẽ không thể đặt vé được nếu chưa đăng nhập"
+          });
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -88,15 +111,12 @@ function Chairing() {
     });
   };
   return (
-    <>
+    <div className={style.row}>
       <div className="row">
         <div className="col"> {renderListChair1()}</div>
         <div className="col">{renderListChair2()}</div>
       </div>
-      <div
-        className="StyleTableBooking"
-        style={{ textAlign: "center", margin: "30px" }}
-      >
+      <div className={style.StyleTableBooking}>
         <Button
           className={classes.pick}
           variant="contained"
@@ -105,7 +125,7 @@ function Chairing() {
           Booking
         </Button>
       </div>
-    </>
+    </div>
   );
 }
 
