@@ -17,7 +17,9 @@ import slide13 from "../../asset/image/slide/slide13.jpg";
 import slide14 from "../../asset/image/slide/slide14.jpg";
 import slide15 from "../../asset/image/slide/slide15.jpg";
 import slide16 from "../../asset/image/slide/slide16.jpg";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+import SwiperCore, { Autoplay } from "swiper/core";
 
 const slideArray = [
   slide1,
@@ -38,15 +40,9 @@ const slideArray = [
   slide16
 ];
 
+SwiperCore.use([Autoplay]);
+
 const Application = () => {
-  const settings = {
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    arrows: false
-  };
   return (
     <section id="appBlock" className={style.app__section}>
       <div className={style.app__wrapper}>
@@ -87,13 +83,23 @@ const Application = () => {
                 alt="mobile__app"
               />
               <div className={style.app__slide}>
-                <Slider {...settings} className={style.slide__container}>
+                <Swiper
+                  spaceBetween={0}
+                  centeredSlides={true}
+                  speed={1000}
+                  loop={true}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false
+                  }}
+                  className={style.slide__container}
+                >
                   {slideArray.map((s, index) => (
-                    <div key={index} className={style.slide}>
+                    <SwiperSlide key={index} className={style.slide}>
                       <img src={s} alt="" />
-                    </div>
+                    </SwiperSlide>
                   ))}
-                </Slider>
+                </Swiper>
               </div>
             </div>
           </div>
