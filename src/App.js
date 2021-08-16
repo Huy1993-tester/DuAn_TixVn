@@ -3,13 +3,13 @@ import "./App.css";
 import Home from "./page/home";
 import Dashboard from "./admin/page/dashboard/dashboard.page";
 import { Detail } from "./page/detail/detail";
-import Footer from "./componnet/footer";
 import Booking from "./page/booking";
 import Chairing from "./page/chair/chairing";
 import SignIn from "./page/sign-in/sign-in.page";
 import SignUp from "./page/sign-up/sign-up.page";
 import Guard from "./HOC/guard.hoc";
 import Header from "./componnet/header/header.component";
+import Footer from "./componnet/footer/footer.component";
 
 function App() {
   return (
