@@ -15,15 +15,15 @@ export const getListRap = () => {
   let method = "GET";
   return async (dispatch) => {
     try {
-      const { res, status } = await api.get(url, method);
+      const { data, status } = await api.get(url, method);
       if (STATUS_CODE.SUCCESS === status) {
         dispatch({
           type: GET_LIST_RAP,
-          payload: res.data
+          payload: data
         });
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
 };

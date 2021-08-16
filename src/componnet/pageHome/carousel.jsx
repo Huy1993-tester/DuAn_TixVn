@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
-import HomeTool from "./homeTool";
+// import HomeTool from "./homeTool";
+import HomeTool from "../homeTool/homeTool.component";
 import player from "../../asset/image/play-video.png";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -8,7 +9,7 @@ function SampleNextArrow(props) {
     <div
       className={className}
       style={{
-        ...style,
+        ...style
       }}
       onClick={onClick}
     />
@@ -20,7 +21,7 @@ function SamplePrevArrow(props) {
     <div
       className={className}
       style={{
-        ...style,
+        ...style
       }}
       onClick={onClick}
     />
@@ -37,37 +38,51 @@ export default function Carousel() {
     slidesPerRow: 1,
     // autoplay: true,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    prevArrow: <SamplePrevArrow />
   };
 
   return (
-    
     <div>
       <Slider {...settings} className="carousel container-fluid">
-       <a href="https://www.youtube.com/embed/9nyV-pgMX4I" id=""  className="venobox " data-vbtype="video">
-        <div className="banTayDietQuy ">
-         
-        </div>
-        <div className="round">  <img  src={player} alt="" /></div>
-            
+        <a
+          href="https://www.youtube.com/embed/9nyV-pgMX4I"
+          id=""
+          className="venobox "
+          data-vbtype="video"
+        >
+          <div className="banTayDietQuy "></div>
+          <div className="round">
+            {" "}
+            <img src={player} alt="" />
+          </div>
         </a>
-        <a href="https://www.youtube.com/embed/IqIO53nQZ2E"  className="venobox " data-vbtype="video">
-        <div className="trangTi ">
-        </div>
-        <div className="round">  <img  src={player} alt="" /></div>
-       
-        </a> 
-         <a href="https://www.youtube.com/embed/kBY2k3G6LsM"  className="venobox " data-vbtype="video">
-        <div className="latMat ">
-        </div>
-        <div className="round">  <img  src={player} alt="" /></div>
-       
+        <a
+          href="https://www.youtube.com/embed/IqIO53nQZ2E"
+          className="venobox "
+          data-vbtype="video"
+        >
+          <div className="trangTi "></div>
+          <div className="round">
+            {" "}
+            <img src={player} alt="" />
+          </div>
+        </a>
+        <a
+          href="https://www.youtube.com/embed/kBY2k3G6LsM"
+          className="venobox "
+          data-vbtype="video"
+        >
+          <div className="latMat "></div>
+          <div className="round">
+            {" "}
+            <img src={player} alt="" />
+          </div>
         </a>
       </Slider>
-      <div className="positionHomeTool">
+      {/* <div className="positionHomeTool">
       <HomeTool />
-      </div>
-     
+      </div> */}
+      <HomeTool />
     </div>
   );
 }
