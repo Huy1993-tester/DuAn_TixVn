@@ -75,10 +75,8 @@
     height: 100%;
     margin: 0 28%;
     .slide__container {
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
+      position: relative;
+      border-radius: 20px;
       overflow: hidden;
       margin: 0.625rem 0.3rem;
       width: calc(100% - 0.625rem);
