@@ -1,4 +1,5 @@
 import React from "react";
+import Application from "../componnet/application/application.component";
 import Footer from "../componnet/footer";
 import Header from "../componnet/header/header.component";
 import News from "../componnet/news/news.component";
@@ -15,7 +16,8 @@ function Home() {
       <HomeMovie />
       <TableBlock />
       <News />
-      <HomeApp />
+      <Application />
+      {/* <HomeApp /> */}
       <Footer />
     </>
   );
