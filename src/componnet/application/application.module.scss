@@ -75,14 +75,11 @@
     height: 100%;
     margin: 0 28%;
     .slide__container {
-      position: relative;
       border-radius: 20px;
-      overflow: hidden;
       margin: 0.625rem 0.3rem;
       width: calc(100% - 0.625rem);
       height: calc(100% - 1.25rem);
       .slide {
-        height: 100%;
         img {
           width: 100%;
           height: 100%;
