@@ -45,23 +45,36 @@
 
 .news__body {
   .news__main {
+    display: none;
+    opacity: 0;
+    &:global(.active) {
+      display: flex;
+      opacity: 1;
+    }
+    > :nth-child(1) {
+      transform: translate(50%, 50%) scale(0.3);
+      animation-delay: 0.25s;
+    }
     > :nth-child(2) {
+      transform: translate(-50%, 50%) scale(0.3);
       animation-delay: 0.5s;
     }
     > :nth-child(3) {
-      animation-delay: 1s;
+      transform: translate(50%, -50%) scale(0.3);
+      animation-delay: 0.75s;
     }
     > :nth-child(4) {
-      animation-delay: 1.5s;
+      transform: translate(0, -50%) scale(0.3);
+      animation-delay: 1s;
     }
     > :nth-child(5) {
-      animation-delay: 2s;
+      transform: translate(-50%, -50%) scale(0.3);
+      animation-delay: 1.25s;
     }
   }
   .news__big,
   .news__small {
-    animation: fade 3s ease-in-out;
-    animation-fill-mode: forwards;
+    animation: come__in 0.75s ease-in-out 0.2s forwards;
     opacity: 0;
     @include for-size(578px, down) {
       width: 100% !important;
@@ -137,6 +150,17 @@
     opacity: 0;
   }
   100% {
+    opacity: 1;
+  }
+}
+
+@keyframes come__in {
+  55% {
+    transform: scale(1.2) translate(0, -50px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
     opacity: 1;
   }
 }
