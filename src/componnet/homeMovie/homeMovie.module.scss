@@ -5,6 +5,8 @@
   height: 100%;
   animation: fade 3s ease;
   .films__content {
+    max-width: 100rem;
+    margin: 0 auto;
     .films__header {
       display: flex;
       border: none;
