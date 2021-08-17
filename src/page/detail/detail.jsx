@@ -15,16 +15,18 @@ import { Container, Table } from "@material-ui/core";
 import rating from "../../asset/image/rate.gif";
 import * as React from "react";
 import style from "./detail.module.scss";
+import Header from "../../componnet/header/header.component";
+import Footer from "../../componnet/footer/footer.component";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    justifyItems: "center",
+    justifyItems: "center"
   },
   root2: {
     width: 200,
     display: "flex",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 }));
 
 export function Detail() {
@@ -72,8 +74,8 @@ export function Detail() {
             Click
           </button>
         );
-      },
-    },
+      }
+    }
   ];
 
   const renderRap = () => {
@@ -89,66 +91,66 @@ export function Detail() {
         maRap: rap.maRap,
         giaVe: lichChieu.giaVe,
         thoiLuong: lichChieu.thoiLuong,
-        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu, "dd/mm/yyyy"),
+        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu, "dd/mm/yyyy")
       };
     });
   };
 
   return (
     <>
+      <Header />
       <div className={style.backGroundDetail}>
         <img src={detailMovie.hinhAnh} />
       </div>
       <Container className={style.detailChild}>
         <div className={style.detail_movie}>
-          
-            {showVideo ? (
-              <ReactPlayer
-                url={detailMovie.trailer}
+          {showVideo ? (
+            <ReactPlayer
+              url={detailMovie.trailer}
+              width="300px"
+              height="400px"
+              auto
+            />
+          ) : (
+            <a href="#">
+              <img
+                src={detailMovie.hinhAnh}
+                alt=""
                 width="300px"
                 height="400px"
-                auto
               />
-            ) : (
-              <a href="#">
-                <img
-                  src={detailMovie.hinhAnh}
-                  alt=""
-                  width="300px"
-                  height="400px"
-                />
-              </a>
-            )}
-            <div className="detail_movie_child">
-              <h3>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h3>
-              <h3>{detailMovie.tenPhim}</h3>
-              <h3>2D/Digital</h3>
-              {showVideo ? (
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => handleShowVide()}
-                >
-                  Đóng Trailer
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  onClick={() => handleShowVide()}
-                >
-                  Xem Trailer
-                </button>
-              )}
+            </a>
+          )}
+          <div className="detail_movie_child">
+            <h3>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h3>
+            <h3>{detailMovie.tenPhim}</h3>
+            <h3>2D/Digital</h3>
+            {showVideo ? (
               <button
                 type="button"
                 className="btn btn-danger"
-                // onClick={() => history.push(`/booking/${maPhim}`)}
+                onClick={() => handleShowVide()}
               >
-                Đặt vé
+                Đóng Trailer
               </button>
-            </div>
-          
+            ) : (
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={() => handleShowVide()}
+              >
+                Xem Trailer
+              </button>
+            )}
+            <button
+              type="button"
+              className="btn btn-danger"
+              // onClick={() => history.push(`/booking/${maPhim}`)}
+            >
+              Đặt vé
+            </button>
+          </div>
+
           <div>
             <div class="icon_Rating">
               <img src={rating} alt="" height="200px" />
@@ -164,8 +166,7 @@ export function Detail() {
           </div>
         </div>
 
-        <TabContext value={value} >
-          
+        <TabContext value={value}>
           <AppBar position="static">
             <TabList
               className={style.barTab}
@@ -191,8 +192,7 @@ export function Detail() {
               <h5>2D/Digital</h5>
               <h5>{detailMovie.moTa}</h5>
             </div>
-            <div>       
-            </div>
+            <div></div>
           </TabPanel>
           <TabPanel value="DG" className={style.detail_text}>
             <h3>{detailMovie.danhGia}/10 </h3>
@@ -210,9 +210,9 @@ export function Detail() {
               </Container>
             </Table>
           </TabPanel>
-         
         </TabContext>
       </Container>
+      <Footer />
     </>
   );
 }
