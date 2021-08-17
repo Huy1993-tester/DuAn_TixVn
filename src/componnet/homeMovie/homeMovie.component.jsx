@@ -56,34 +56,35 @@ const HomeMovie = () => {
   const upComingList = list_movie.slice(41, 61);
 
   const swiperSettings = {
-    // loop: true,
-    // speed: 1000,
     className: style.films__container,
     grabCursor: true,
     slidesPerColumn: 2,
-    slidesPerColumnFill: "row",
-    // centeredSlides: true,
     slideToClickedSlide: true,
-    // autoplay: {
-    //   delay: 3000,
-    //   pauseOnMouseEnter: true,
-    //   disableOnInteraction: false
-    // },
+
     breakpoints: {
       0: {
-        slidesPerView: 1
+        slidesPerView: 1,
+        slidesPerColumn: 1
       },
       320: {
-        slidesPerView: 1
+        slidesPerView: 1,
+        slidesPerColumn: 1
       },
       425: {
-        slidesPerView: 2
+        slidesPerView: 2,
+        slidesPerColumn: 1
       },
       768: {
-        slidesPerView: 3
+        slidesPerView: 3,
+        slidesPerColumn: 1
       },
       1024: {
-        slidesPerView: 4
+        slidesPerView: 4,
+        slidesPerColumn: 2
+      },
+      1440: {
+        slidesPerView: 5,
+        slidesPerColumn: 2
       }
     }
   };
