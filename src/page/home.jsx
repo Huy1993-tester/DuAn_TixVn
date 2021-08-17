@@ -5,7 +5,7 @@ import Footer from "../componnet/footer/footer.component";
 import Header from "../componnet/header/header.component";
 import News from "../componnet/news/news.component";
 import TableBlock from "../componnet/pageHome/cinemeBlock";
-import HomeMovie from "../componnet/pageHome/homeMovie";
+import HomeMovie from "../componnet/homeMovie/homeMovie.component";
 
 function Home() {
   return (

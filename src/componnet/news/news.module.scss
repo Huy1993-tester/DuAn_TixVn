@@ -44,8 +44,25 @@
 }
 
 .news__body {
+  .news__main {
+    > :nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    > :nth-child(3) {
+      animation-delay: 1s;
+    }
+    > :nth-child(4) {
+      animation-delay: 1.5s;
+    }
+    > :nth-child(5) {
+      animation-delay: 2s;
+    }
+  }
   .news__big,
   .news__small {
+    animation: fade 3s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
     @include for-size(578px, down) {
       width: 100% !important;
     }
@@ -112,5 +129,14 @@
     .news__image {
       padding-top: 100% !important;
     }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

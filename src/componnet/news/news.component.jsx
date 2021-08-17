@@ -38,8 +38,8 @@ const News = () => {
           key={index}
           className={
             index === 0 || index === 1
-              ? "col-sm-6 news__big"
-              : "col-sm-4 news__big"
+              ? `col-sm-6 ${style.news__big}`
+              : `col-sm-4 ${style.news__big}`
           }
         >
           <div className={style.news__item}>
@@ -90,7 +90,7 @@ const News = () => {
     return (
       <>
         {news}
-        <div className="col-sm-4 news__small">{smallNews}</div>
+        <div className={`col-sm-4 ${style.news__small}`}>{smallNews}</div>
       </>
     );
   };
@@ -124,7 +124,9 @@ const News = () => {
           </div>
           <div className={style.news__body}>
             <div className="">
-              <div className="row m-0">{renderNews()}</div>
+              <div className={`row m-0 ${style.news__main}`}>
+                {renderNews()}
+              </div>
             </div>
           </div>
         </div>
