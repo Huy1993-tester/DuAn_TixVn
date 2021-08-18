@@ -24,10 +24,10 @@ export const getListMovie = () => {
   };
 };
 
-export const getMovie = (ds1) => {
+export const getMovie = (maCumRap) => {
   return {
     type: GET_MOVIE,
-    payload: ds1
+    payload: maCumRap
   };
 };
 

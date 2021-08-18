@@ -14,7 +14,7 @@ const initailState = {
   detail_movie: {},
   movieListPagination: [],
   totalPages: 0,
-  movieDetail: {},
+  movieDetail: {}
 };
 
 export const ReducerMovie = (state = initailState, action) => {
@@ -33,7 +33,10 @@ export const ReducerMovie = (state = initailState, action) => {
       return { ...state };
     }
     case GET_MOVIE: {
-      state.list_phim = payload;
+      const cinemaGroup = state.list_cum_rap.lstCumRap.find(
+        (g) => g.maCumRap === payload
+      );
+      state.list_phim = [...cinemaGroup.danhSachPhim];
       return { ...state };
     }
     case GET_DETAIL_MOVIE: {
