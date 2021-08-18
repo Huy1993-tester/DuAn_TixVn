@@ -1,11 +1,11 @@
 import React from "react";
-import Application from "../componnet/application/application.component";
-import Carousel from "../componnet/carousel/carousel.component";
-import Footer from "../componnet/footer/footer.component";
-import Header from "../componnet/header/header.component";
-import News from "../componnet/news/news.component";
-import TableBlock from "../componnet/pageHome/cinemeBlock";
-import HomeMovie from "../componnet/homeMovie/homeMovie.component";
+import Application from "../components/application/application.component";
+import Carousel from "../components/carousel/carousel.component";
+import Footer from "../components/footer/footer.component";
+import Header from "../components/header/header.component";
+import News from "../components/news/news.component";
+import TableBlock from "../components/pageHome/cinemeBlock";
+import HomeMovie from "../components/homeMovie/homeMovie.component";
 
 function Home() {
   return (

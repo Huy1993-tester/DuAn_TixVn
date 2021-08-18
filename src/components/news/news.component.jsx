@@ -4,7 +4,6 @@ import comment from "../../asset/image/comment.png";
 import cinemaList from "./cinema.data.json";
 import reviewList from "./review.data.json";
 import promotionList from "./promotion.data.json";
-import LazyLoad from "react-lazyload";
 
 import React, { useState } from "react";
 import clsx from "clsx";

@@ -11,10 +11,11 @@ import "swiper/swiper.min.css";
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import "swiper/components/pagination/pagination.min.css";
 
-// import Swiper core and required modules
 import SwiperCore, { Navigation, Controller, Autoplay } from "swiper/core";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
-// install Swiper modules
 SwiperCore.use([Navigation, Controller, Autoplay]);
 
 const useStyles = makeStyles((theme) => ({
@@ -148,7 +149,14 @@ const HomeMovie = () => {
   }, []);
   return (
     <section id="filmsBlock" className={style.films__section}>
-      <div className={style.films__content}>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="50"
+        data-aos-duration="600"
+        data-aos-easing="ease-in-out"
+        data-aos-anchor-placement="top-center"
+        className={style.films__content}
+      >
         <div className={`nav nav-tabs ${style.films__header}`}>
           <button
             name="nowShowing"

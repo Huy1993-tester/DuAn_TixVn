@@ -20,6 +20,9 @@ import slide16 from "../../asset/image/slide/slide16.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import SwiperCore, { Autoplay } from "swiper/core";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const slideArray = [
   slide1,
@@ -45,7 +48,14 @@ SwiperCore.use([Autoplay]);
 const Application = () => {
   return (
     <section id="appBlock" className={style.app__section}>
-      <div className={style.app__wrapper}>
+      <div
+        data-aos="fade-up"
+        data-aos-delay="50"
+        data-aos-duration="600"
+        data-aos-easing="ease-in-out"
+        data-aos-anchor-placement="top-center"
+        className={style.app__wrapper}
+      >
         <div className={style.app__content}>
           <div className="row m-0">
             <div className={`col-lg-6 col-12 text-white ${style.app__left}`}>

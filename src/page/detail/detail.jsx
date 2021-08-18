@@ -15,8 +15,8 @@ import { Container, Table } from "@material-ui/core";
 import rating from "../../asset/image/rate.gif";
 import * as React from "react";
 import style from "./detail.module.scss";
-import Header from "../../componnet/header/header.component";
-import Footer from "../../componnet/footer/footer.component";
+import Header from "../../components/header/header.component";
+import Footer from "../../components/footer/footer.component";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
