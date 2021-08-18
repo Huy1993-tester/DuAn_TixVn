@@ -7,8 +7,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { CHOISE_CHAIR } from "../../store/constant/cinema.constant";
 import style from "./chair.module.scss";
 import swal from "sweetalert";
-import Header from "../../componnet/header/header.component";
-import Footer from "../../componnet/footer/footer.component";
+import Header from "../../components/header/header.component";
+import Footer from "../../components/footer/footer.component";
 
 const useStyle = makeStyles({
   not_pick: {

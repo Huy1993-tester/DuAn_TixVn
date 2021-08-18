@@ -6,14 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 import { Store } from "./store/config/config";
 import { Provider } from "react-redux";
 import "./css/style.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import "venobox/venobox/venobox.min.css";
 import "jquery/dist/jquery.min.js";
 import "venobox/venobox/venobox.min.js";
-
-
 
 axios.interceptors.request.use((r) => {
   const TOKEN = JSON.parse(localStorage.getItem("accessToken"));

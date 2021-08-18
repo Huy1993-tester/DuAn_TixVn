@@ -56,8 +56,7 @@ function Header() {
       ""
     );
   };
-  console.log("render");
-  useEffect(() => {}, [userName]);
+
   return (
     <header className={style.header}>
       <div className={style.header__navbar}>
