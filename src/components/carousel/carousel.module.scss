@@ -4,9 +4,9 @@
   margin-top: 60px;
   position: relative;
   animation: fade 2s ease;
-  // @include for-size(480px, down) {
-  //   display: none;
-  // }
+  @include for-size(480px, down) {
+    display: none;
+  }
   .carousel__wrapper {
     position: relative;
     padding-bottom: 40%;
@@ -22,7 +22,7 @@
 
 .carousel__swiper {
   .carousel__image {
-    background-position: center center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
