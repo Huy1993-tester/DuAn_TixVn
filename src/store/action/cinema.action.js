@@ -36,7 +36,7 @@ export const getListCumRap = (maHeThongRap, maNhom) => {
       const res = await api.get(url, method);
       dispatch({
         type: GET_LIST_CUM_RAP,
-        payload: res.data
+        payload: res.data[0]
       });
     } catch (err) {
       console.log(err);
