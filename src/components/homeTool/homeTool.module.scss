@@ -53,13 +53,16 @@
   top: 50%;
   left: 0;
   width: 100%;
-  padding: 7%;
+  padding: 0 35px 0 20px;
   transform: translateY(-50%);
   font-size: 0.875rem;
   border: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   &:after {
     position: absolute;
-    right: 7%;
+    right: 20px;
     top: 50%;
     border-top: 0.3em solid #9b9b9b !important;
     transform: translateY(-50%);
