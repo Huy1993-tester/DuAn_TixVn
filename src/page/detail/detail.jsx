@@ -17,6 +17,7 @@ import * as React from "react";
 import style from "./detail.module.scss";
 import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
+import swal from "sweetalert";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -66,7 +67,22 @@ export function Detail() {
       disableClickEventBubbling: true,
       renderCell: (params) => {
         const onclick = () => {
-          history.push(`/chairing/${params.row.maLichChieu}`);
+          if (JSON.parse(localStorage.getItem("hoTen"))) {
+            history.push(`/chairing/${params.row.maLichChieu}`);
+          } else {
+            swal({
+              title: "Bạn chưa đăng nhập!!!",
+              text: "Bạn cần đăng nhập để tiếp tục đặt vé!",
+              icon: "warning",
+              buttons: ["Hủy", "Đăng nhập"],
+              dangerMode: true,
+              className: "custom__swal"
+            }).then((willSignIn) => {
+              if (willSignIn) {
+                history.push(`/sign-in`);
+              }
+            });
+          }
         };
 
         return (

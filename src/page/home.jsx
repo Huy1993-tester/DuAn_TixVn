@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(stopLoadingAction());
-    }, 3000);
+    }, 1000);
     return () => {
       clearTimeout(timer);
     };

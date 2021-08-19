@@ -9,6 +9,7 @@ import {
 import { api } from "../../core/service/api.service";
 import { STATUS_CODE } from "../../core/global/constant";
 import { cinemaService } from "../../core/service/cinema.service";
+import { startLoadingAction, stopLoadingAction } from "./common.action";
 
 export const getListRap = () => {
   let url = "api/QuanLyRap/LayThongTinHeThongRap";
@@ -48,6 +49,7 @@ export const getListChair = (id) => {
   let url = `api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`;
   let method = "GET";
   return async (dispatch) => {
+    dispatch(startLoadingAction());
     try {
       const res = await api.get(url, method);
       dispatch({
@@ -57,6 +59,9 @@ export const getListChair = (id) => {
     } catch (err) {
       console.log(err);
     }
+    setTimeout(() => {
+      dispatch(stopLoadingAction());
+    }, 700);
   };
 };
 
@@ -77,25 +82,23 @@ export const getCinemaSystemListAction = () => {
 export const BookingChair = (maLichChieu, danhSachVe) => {
   let url = "api/QuanLyDatVe/DatVe";
   let method = "POST";
-  let taiKhoanNguoiDung = "maiquochuy";
-  let ds = danhSachVe.map((ve) => ({ maGhe: ve.maGhe, giaVe: ve.giaVe }));
+  const taiKhoanNguoiDung = JSON.parse(localStorage.getItem("taiKhoan"));
   let data = {
-    maLichChieu: parseInt(maLichChieu),
-    danhSachVe: ds,
+    maLichChieu,
+    danhSachVe,
     taiKhoanNguoiDung
   };
-  console.log(data);
-  let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFpcXVvY2h1eSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IktoYWNoSGFuZyIsIm5iZiI6MTYyNjYxOTcxMCwiZXhwIjoxNjI2NjIzMzEwfQ.9JWvLSdjmi1iycAJ6UBd0csEyrbVfBuh5tHHaHJvLD8";
+
   return async (dispatch) => {
+    dispatch(startLoadingAction());
     try {
-      const response = await api.post(url, method, data, token);
-      console.log(response);
+      return await api.post(url, method, data);
     } catch (err) {
       console.log(err.response);
     }
   };
 };
+
 export const getCinemaGroupListAction = (maHeThongRap) => {
   return async (dispatch) => {
     try {
