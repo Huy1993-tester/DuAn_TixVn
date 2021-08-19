@@ -10,6 +10,13 @@ class ShowtimeService {
       data
     });
   };
+
+  getShowtimeByMovie = (showtimeCode) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${showtimeCode}`,
+      method: "GET"
+    });
+  };
 }
 
 export const showtimeService = new ShowtimeService();
