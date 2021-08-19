@@ -12,10 +12,10 @@ class ApiService {
     return axios({
       url: `${DOMAIN}/${url}`,
       method: method,
-      data: info,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      data: info
+      // headers: {
+      //   Authorization: `Bearer ${token}`
+      // }
     });
   };
 }
