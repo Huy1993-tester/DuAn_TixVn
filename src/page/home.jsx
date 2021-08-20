@@ -8,11 +8,10 @@ import HomeMovie from "../components/homeMovie/homeMovie.component";
 import Cinema from "../components/cinema/cinema.component";
 import Loader from "../components/loader/loader.component";
 import { stopLoadingAction } from "../store/action/common.action";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Home() {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.common.isLoading);
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(stopLoadingAction());
@@ -25,18 +24,12 @@ function Home() {
     <>
       <Loader />
       <Header />
-      {/* {isLoading ? (
-        <Loader />
-      ) : (
-        <> */}
       <Carousel />
       <HomeMovie />
       <Cinema />
       <News />
       <Application />
       <Footer />
-      {/* </>
-      )} */}
     </>
   );
 }

@@ -70,17 +70,11 @@ const Application = () => {
                 </button>
                 <p className={style.download}>
                   TIX có hai phiên bản{" "}
-                  <a
-                    target="_blank"
-                    href="https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8"
-                  >
+                  <a href="https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8">
                     iOS
                   </a>{" "}
                   &amp;{" "}
-                  <a
-                    target="_blank"
-                    href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123"
-                  >
+                  <a href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
                     Android
                   </a>
                 </p>

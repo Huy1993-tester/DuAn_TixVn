@@ -6,7 +6,7 @@ import { Detail } from "./page/detail/detail";
 import Chairing from "./page/chair/chairing";
 import SignIn from "./page/sign-in/sign-in.page";
 import SignUp from "./page/sign-up/sign-up.page";
-import Guard from "./HOC/guard.hoc";
+import Guard, { GuardBooking } from "./HOC/guard.hoc";
 
 function App() {
   return (
@@ -15,7 +15,11 @@ function App() {
         <Redirect exact from="/" to="/home" />
         <Route path="/home" component={Home} />
         <Route path="/detail/:maPhim" component={Detail} />
-        <Route path="/chairing/:maLichChieu" component={Chairing} />
+        <Route path="/chairing/:maLichChieu">
+          <GuardBooking>
+            <Chairing />
+          </GuardBooking>
+        </Route>
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/admin/:feature">

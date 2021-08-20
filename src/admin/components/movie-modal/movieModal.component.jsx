@@ -190,6 +190,7 @@ const MovieModal = ({ openModal, handleClose, handleAction, isUpdating }) => {
                           ? formik.values.hinhAnh
                           : URL.createObjectURL(formik.values.hinhAnh)
                       }
+                      alt={formik.values.hinhAnh}
                       style={{
                         height: "112px",
                         marginLeft: "8px",

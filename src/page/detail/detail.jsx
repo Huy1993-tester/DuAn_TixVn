@@ -105,9 +105,9 @@ export function Detail() {
   };
 
   const renderShowtime = (showtimeList) => {
-    return showtimeList.map((st) => {
+    return showtimeList.map((st, i) => {
       return (
-        <a onClick={() => handleShowtimeClick(st.maLichChieu)}>
+        <a key={i} onClick={() => handleShowtimeClick(st.maLichChieu)}>
           <span className={s.date}>
             {dayjs(st.ngayChieuGioChieu).format("MMM D, YYYY")}
           </span>
@@ -120,9 +120,9 @@ export function Detail() {
   };
 
   const renderCinemaGroup = () => {
-    return cinemaGroup.map((g) => {
+    return cinemaGroup.map((g, i) => {
       return (
-        <div className={s.group__details}>
+        <div key={i} className={s.group__details}>
           <div className={s.group__info}>
             <div className={s.image}>
               <img src={g.hinhAnh !== null ? g.hinhAnh : imgDemo} />
@@ -257,9 +257,9 @@ export function Detail() {
                 <iframe
                   className={s.video}
                   src={`${trailer}?autoplay=1`}
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </Fade>
             </Modal>

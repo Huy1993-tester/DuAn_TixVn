@@ -60,6 +60,7 @@ function Chairing() {
       if ((i + 1) % 16 === 1 || (i + 1) % 16 === 2)
         return (
           <div
+            key={i}
             onClick={() => handleChair(c.maGhe)}
             className={clsx({
               [s.chair]: true,
@@ -76,6 +77,7 @@ function Chairing() {
       if ((i + 1) % 16 === 0 || (i + 1) % 16 === 15)
         return (
           <div
+            key={i}
             onClick={() => handleChair(c.maGhe)}
             className={clsx({
               [s.chair]: true,
@@ -97,6 +99,7 @@ function Chairing() {
       )
         return (
           <div
+            key={i}
             onClick={() => handleChair(c.maGhe)}
             className={clsx({
               [s.chair]: true,
@@ -140,9 +143,10 @@ function Chairing() {
       return (total += c.giaVe);
     }, 0);
 
-    const normalChairList = normalList.map((c) => {
+    const normalChairList = normalList.map((c, i) => {
       return (
         <div
+          key={i}
           onClick={() => handleChair(c.maGhe)}
           className={clsx({
             [s.chair]: true,
@@ -154,9 +158,10 @@ function Chairing() {
       );
     });
 
-    const vipChairList = vipList.map((c) => {
+    const vipChairList = vipList.map((c, i) => {
       return (
         <div
+          key={i}
           onClick={() => handleChair(c.maGhe)}
           className={clsx({
             [s.chair]: true,

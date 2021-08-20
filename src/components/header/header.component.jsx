@@ -16,6 +16,7 @@ function Header() {
 
   const handleSignout = () => {
     localStorage.clear();
+    history.push("/home");
   };
 
   const renderUserName = () => {
