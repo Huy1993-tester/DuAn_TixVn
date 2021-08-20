@@ -12,41 +12,38 @@ import "aos/dist/aos.css";
 AOS.init();
 
 const NewsChild = React.memo(({ array }) => {
-  console.log("render");
   const news = array.slice(0, 4).map((d, index) => {
     return (
-      <>
-        <div
-          key={index}
-          className={
-            index === 0 || index === 1
-              ? `col-sm-6 ${style.news__big}`
-              : `col-sm-4 ${style.news__big}`
-          }
-        >
-          <div className={style.news__item}>
-            <div className={style.news__image}>
-              <a target="_blank" href="#">
-                <img src={d.image} />
-              </a>
-            </div>
-            <h4 className="mt-3">
-              <a target="_blank" className="text-decoration-none" href="#">
-                {d.title}
-              </a>
-            </h4>
-            <p className="mb-4">{d.description}</p>
-            <span className="mr-3">
-              <img className="mr-1" src={like} />
-              {d.like}
-            </span>
-            <span>
-              <img className="mr-1" src={comment} />
-              {d.comment}
-            </span>
+      <div
+        key={index}
+        className={
+          index === 0 || index === 1
+            ? `col-sm-6 ${style.news__big}`
+            : `col-sm-4 ${style.news__big}`
+        }
+      >
+        <div className={style.news__item}>
+          <div className={style.news__image}>
+            <a target="_blank" href="#">
+              <img src={d.image} />
+            </a>
           </div>
+          <h4 className="mt-3">
+            <a target="_blank" className="text-decoration-none" href="#">
+              {d.title}
+            </a>
+          </h4>
+          <p className="mb-4">{d.description}</p>
+          <span className="mr-3">
+            <img className="mr-1" src={like} />
+            {d.like}
+          </span>
+          <span>
+            <img className="mr-1" src={comment} />
+            {d.comment}
+          </span>
         </div>
-      </>
+      </div>
     );
   });
   const smallNews = array.slice(4, 8).map((d, index) => {

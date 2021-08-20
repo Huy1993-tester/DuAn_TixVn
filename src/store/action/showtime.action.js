@@ -8,7 +8,6 @@ import { startLoadingAction, stopLoadingAction } from "./common.action";
 export const createShowtimeAction = (showtime) => {
   return async () => {
     try {
-      console.log(showtime);
       return await showtimeService.createShowtime(showtime);
     } catch (error) {
       return error.response;
@@ -28,7 +27,6 @@ export const getShowtimeByMovieAction = (movieCode) => {
     dispatch(startLoadingAction());
     try {
       const response = await showtimeService.getShowtimeByMovie(movieCode);
-      console.log(response);
       dispatch({
         type: GET_SHOWTIME_BY_MOVIE,
         payload: response.data

@@ -64,9 +64,10 @@ const HomeTool = () => {
   };
 
   const renderMovieList = () => {
-    return movieList.map((m) => {
+    return movieList.map((m, i) => {
       return (
         <li
+          key={i}
           onClick={() => handleChooseMovie(m.maPhim, m.tenPhim)}
           className={style.menu__item}
         >
@@ -77,9 +78,10 @@ const HomeTool = () => {
   };
 
   const renderCinemaSystemList = () => {
-    return cinemaSystemList?.map((s) => {
+    return cinemaSystemList?.map((s, i) => {
       return (
         <li
+          key={i}
           onClick={() => handleChooseCinemaSystem(s.maHeThongRap)}
           className={style.menu__item}
         >
@@ -90,9 +92,10 @@ const HomeTool = () => {
   };
 
   const renderCinemaGroupList = () => {
-    return cinemaGroupList?.map((g) => {
+    return cinemaGroupList?.map((g, i) => {
       return (
         <li
+          key={i}
           onClick={() => handleChooseCinemaGroup(g.maCumRap)}
           className={style.menu__item}
         >
@@ -103,9 +106,10 @@ const HomeTool = () => {
   };
 
   const renderShowtimeList = () => {
-    return showtimeList?.map((st) => {
+    return showtimeList?.map((st, i) => {
       return (
         <li
+          key={i}
           onClick={() => handleChooseShowtime(st)}
           className={style.menu__item}
         >
@@ -119,7 +123,6 @@ const HomeTool = () => {
   useEffect(() => {
     dispatch(getListMovie);
   });
-  console.log("render");
   return (
     <div className={style.home__tool}>
       <div className={style.tool__movie}>

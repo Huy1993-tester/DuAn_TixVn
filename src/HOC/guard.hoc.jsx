@@ -11,3 +11,8 @@ const Guard = (props) => {
 };
 
 export default Guard;
+
+export const GuardBooking = (props) => {
+  const hoTen = JSON.parse(localStorage.getItem("hoTen"));
+  return hoTen === null ? <Redirect to="/sign-in" /> : props.children;
+};

@@ -7,9 +7,10 @@ import { Store } from "./store/config/config";
 import { Provider } from "react-redux";
 import "./css/style.css";
 import axios from "axios";
-import "venobox/venobox/venobox.min.css";
-import "jquery/dist/jquery.min.js";
-import "venobox/venobox/venobox.min.js";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/jquery/dist/jquery";
+import "../node_modules/popper.js/dist/popper";
+import "../node_modules/bootstrap/dist/js/bootstrap";
 
 axios.interceptors.request.use((r) => {
   const TOKEN = JSON.parse(localStorage.getItem("accessToken"));

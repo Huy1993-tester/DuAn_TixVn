@@ -2,11 +2,9 @@
 
 .loading {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,69 +12,30 @@
   user-select: none;
   background: white;
   animation: fade 1s ease-in-out 2s forwards;
-  > :nth-child(1) {
-    left: 40%;
-    @include for-size(767px, down) {
-      left: 35%;
+  .loading__content {
+    justify-content: space-between;
+    display: flex;
+    width: 70%;
+    max-width: 250px;
+    > :nth-child(2) {
+      animation-delay: 0.3s;
     }
-    @include for-size(575px, down) {
-      left: 30%;
+    > :nth-child(3) {
+      animation-delay: 0.6s;
     }
-    @include for-size(375px, down) {
-      left: 20%;
+    > :nth-child(4) {
+      animation-delay: 0.9s;
     }
-  }
-  > :nth-child(2) {
-    animation-delay: 0.3s;
-    left: 45%;
-    @include for-size(767px, down) {
-      left: 42.5%;
+    > :nth-child(5) {
+      animation-delay: 1.2s;
     }
-    @include for-size(575px, down) {
-      left: 40%;
+    img {
+      width: 13%;
+      transform-origin: bottom;
     }
-    @include for-size(375px, down) {
-      left: 35%;
-    }
-  }
-  > :nth-child(3) {
-    animation-delay: 0.6s;
-    left: 50%;
-  }
-  > :nth-child(4) {
-    animation-delay: 0.9s;
-    left: 55%;
-    @include for-size(767px, down) {
-      left: 57.5%;
-    }
-    @include for-size(575px, down) {
-      left: 60%;
-    }
-    @include for-size(375px, down) {
-      left: 65%;
-    }
-  }
-  > :nth-child(5) {
-    animation-delay: 1.2s;
-    left: 60%;
-    @include for-size(767px, down) {
-      left: 65%;
-    }
-    @include for-size(575px, down) {
-      left: 70%;
-    }
-    @include for-size(375px, down) {
-      left: 80%;
-    }
-  }
-  img {
-    position: absolute;
-    width: 25px;
-    transform-origin: bottom;
-    // min-width: 150px;
   }
   .tada {
-    animation-name: tada;
+    animation-name: moveUp;
     animation-duration: 1.5s;
     animation-fill-mode: backwards;
     animation-timing-function: ease-in-out;
@@ -93,14 +52,14 @@
   }
 }
 
-@keyframes tada {
+@keyframes moveUp {
   0% {
     opacity: 0.3;
     transform: scale(0.5) translateY(0);
   }
   50% {
     opacity: 1;
-    transform: scale(1.5) translateY(-25px);
+    transform: scale(1.4) translateY(-25px);
   }
   100% {
     opacity: 0.3;

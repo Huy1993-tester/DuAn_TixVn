@@ -195,9 +195,9 @@ const HomeMovie = () => {
           <iframe
             className={style.video}
             src={`${trailer}?autoplay=1`}
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </Fade>
       </Modal>

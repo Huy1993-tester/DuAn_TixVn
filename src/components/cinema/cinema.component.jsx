@@ -108,7 +108,7 @@ const Cinema = () => {
   };
 
   const renderMovie = () => {
-    return movieList?.map((movie) => {
+    return movieList?.map((movie, i) => {
       let check = false;
       // filter all movies that not have upcoming showtime
       if (
@@ -118,7 +118,7 @@ const Cinema = () => {
       )
         check = true;
       return check ? (
-        <div className={`${style.movie__details}`}>
+        <div key={i} className={`${style.movie__details}`}>
           <div className={`${style.movie__info} d-flex`}>
             <div className={style.image}>
               <img src={renderImageUrl(movie.hinhAnh)} alt={movie.biDanh} />
@@ -149,9 +149,9 @@ const Cinema = () => {
         if (b.ngayChieuGioChieu > a.ngayChieuGioChieu) return -1;
         return 0;
       })
-      .map((l) => {
+      .map((l, i) => {
         return (
-          <a onClick={() => handleShowtimeClick(l.maLichChieu)}>
+          <a key={i} onClick={() => handleShowtimeClick(l.maLichChieu)}>
             <span className={style.date}>
               {DayJS(l.ngayChieuGioChieu).format("MMM D, YYYY")}
             </span>
