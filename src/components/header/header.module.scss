@@ -71,15 +71,32 @@
     margin: 0;
     padding: 0;
     font-size: 0.875rem;
-    .menu__item a {
-      text-decoration: none;
-      text-align: center;
-      margin: 0 0.625rem;
-      color: #000;
-      cursor: pointer;
-      transition: 0.2s all;
-      &:hover {
-        color: #fb4226;
+    .menu__item {
+      a {
+        text-decoration: none;
+        text-align: center;
+        margin: 0 0.625rem;
+        padding-bottom: 3px;
+        color: #000;
+        cursor: pointer;
+        transition: 0.2s all;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          width: 0%;
+          height: 1px;
+          bottom: 0;
+          left: 0;
+          background: #fb4226;
+          transition: 0.2s all;
+        }
+        &:hover {
+          color: #fb4226;
+        }
+        &:hover:after {
+          width: 100%;
+        }
       }
     }
   }
@@ -163,6 +180,24 @@
         padding: 1.25rem;
         font-size: 1.125rem;
         cursor: pointer;
+        transition: 0.2s all;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          width: 0%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background: #fb4226;
+          transition: 0.2s all;
+        }
+        &:hover {
+          color: #fb4226;
+        }
+        &:hover:after {
+          width: 100%;
+        }
       }
     }
   }

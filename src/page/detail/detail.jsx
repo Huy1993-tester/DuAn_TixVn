@@ -1,234 +1,272 @@
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { getDetailMovie } from "../../store/action/movie.action";
 import { useDispatch, useSelector } from "react-redux";
-import { DataGrid } from "@material-ui/data-grid";
-import TabContext from "@material-ui/lab/TabContext";
-import TabList from "@material-ui/lab/TabList";
-import AppBar from "@material-ui/core/AppBar";
-import Tab from "@material-ui/core/Tab";
-import TabPanel from "@material-ui/lab/TabPanel";
-import { makeStyles } from "@material-ui/core/styles";
-import Rating from "@material-ui/lab/Rating";
-import ReactPlayer from "react-player/youtube";
-import { Container, Table } from "@material-ui/core";
-import rating from "../../asset/image/rate.gif";
 import * as React from "react";
-import style from "./detail.module.scss";
+import s from "./detail.module.scss";
 import Header from "../../components/header/header.component";
 import Footer from "../../components/footer/footer.component";
 import swal from "sweetalert";
+import Loader from "../../components/loader/loader.component";
+import { renderImageUrl } from "../../core/helper/renderImageURL";
+import { getShowtimeByMovieAction } from "../../store/action/showtime.action";
+import * as dayjs from "dayjs";
+import star from "../../asset/image/star1.png";
+import clsx from "clsx";
+import imgDemo from "../../asset/image/cinemaGroupDemo.jpg";
+import { Modal, makeStyles, Fade } from "@material-ui/core";
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    justifyItems: "center"
-  },
-  root2: {
-    width: 200,
+  modal: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   }
 }));
-
 export function Detail() {
+  const classes = useStyles();
   let { maPhim } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  var dateFormat = require("dateformat");
+  const isLoading = useSelector((state) => state.common.isLoading);
 
+  const randomRating = Math.round((Math.random() * 4 + 6) * 10) / 10;
+
+  const [cinemaGroup, setCinemaGroup] = useState([]);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
   useEffect(() => {
-    dispatch(getDetailMovie(maPhim));
-  });
-  const detailMovie = useSelector((state) => {
-    return state.movie?.detail_movie;
-  });
-  const classes = useStyles();
-  const [value, setValue] = React.useState("TH");
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  const [showVideo, setShowVideo] = useState(false);
-  const handleShowVide = () => {
-    setShowVideo(!showVideo);
-  };
-  const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "tenRap", headerName: "Tên Rạp", width: 150 },
-    { field: "maLichChieu", headerName: "Mã Lịch Chiếu", width: 150 },
-    { field: "maRap", headerName: "Mã Rạp", width: 150 },
-    { field: "giaVe", headerName: "Giá vé", width: 150 },
-    { field: "thoiLuong", headerName: "Thời gian", width: 150 },
-    { field: "ngayChieu", headerName: "Lịch chiếu", width: 150 },
-    {
-      field: "",
-      headerName: "Đặt lịch",
-      with: 150,
-      sortable: false,
-      disableClickEventBubbling: true,
-      renderCell: (params) => {
-        const onclick = () => {
-          if (JSON.parse(localStorage.getItem("hoTen"))) {
-            history.push(`/chairing/${params.row.maLichChieu}`);
-          } else {
-            swal({
-              title: "Bạn chưa đăng nhập!!!",
-              text: "Bạn cần đăng nhập để tiếp tục đặt vé!",
-              icon: "warning",
-              buttons: ["Hủy", "Đăng nhập"],
-              dangerMode: true,
-              className: "custom__swal"
-            }).then((willSignIn) => {
-              if (willSignIn) {
-                history.push(`/sign-in`);
-              }
-            });
-          }
-        };
+    const abortController = new AbortController();
+    dispatch(getShowtimeByMovieAction(maPhim));
+    return () => {
+      abortController.abort();
+    };
+  }, []);
+  const { hinhAnh, ngayKhoiChieu, tenPhim, heThongRapChieu, trailer } =
+    useSelector((state) => {
+      return state.showtime.showtimeByMovie;
+    });
 
-        return (
-          <button className="btn btn-success" onClick={() => onclick()}>
-            Click
-          </button>
-        );
-      }
+  const handleChangeCinemaSystem = (code) => {
+    setCinemaGroup(
+      heThongRapChieu.find((sys) => sys.maHeThongRap === code).cumRapChieu
+    );
+  };
+
+  const handleShowtimeClick = (maLichChieu) => {
+    if (JSON.parse(localStorage.getItem("hoTen"))) {
+      history.push(`/chairing/${maLichChieu}`);
+    } else {
+      swal({
+        title: "Bạn chưa đăng nhập!!!",
+        text: "Bạn cần đăng nhập để tiếp tục đặt vé!",
+        icon: "warning",
+        buttons: ["Hủy", "Đăng nhập"],
+        dangerMode: true,
+        className: "custom__swal"
+      }).then((willSignIn) => {
+        if (willSignIn) {
+          history.push(`/sign-in`);
+        }
+      });
     }
-  ];
+  };
 
-  const renderRap = () => {
-    var element = document.createElement("a");
-    element.href = "a";
-    element.innerHTML = "EDIT";
-    return detailMovie?.lichChieu?.map((lichChieu, index) => {
-      let rap = lichChieu.thongTinRap;
-      return {
-        id: index,
-        tenRap: rap.tenRap,
-        maLichChieu: lichChieu.maLichChieu,
-        maRap: rap.maRap,
-        giaVe: lichChieu.giaVe,
-        thoiLuong: lichChieu.thoiLuong,
-        ngayChieu: dateFormat(lichChieu.ngayChieuGioChieu, "dd/mm/yyyy")
-      };
+  const renderCinemaSystem = () => {
+    return heThongRapChieu?.map((sys, i) => {
+      return (
+        <button
+          key={i}
+          className={clsx({
+            "nav-link": true,
+            active: i === 0
+          })}
+          data-toggle="pill"
+          onClick={() => handleChangeCinemaSystem(sys.maHeThongRap)}
+        >
+          <div className="d-flex align-items-center">
+            <div className={`${s.system__image}`}>
+              <img src={renderImageUrl(sys.logo)} />
+            </div>
+            <div className={`${s.system__name}`}>
+              <p>{sys.tenHeThongRap}</p>
+            </div>
+          </div>
+        </button>
+      );
+    });
+  };
+
+  const renderShowtime = (showtimeList) => {
+    return showtimeList.map((st) => {
+      return (
+        <a onClick={() => handleShowtimeClick(st.maLichChieu)}>
+          <span className={s.date}>
+            {dayjs(st.ngayChieuGioChieu).format("MMM D, YYYY")}
+          </span>
+          <span className={s.time}>
+            {dayjs(st.ngayChieuGioChieu).format("HH:mm")}
+          </span>
+        </a>
+      );
+    });
+  };
+
+  const renderCinemaGroup = () => {
+    return cinemaGroup.map((g) => {
+      return (
+        <div className={s.group__details}>
+          <div className={s.group__info}>
+            <div className={s.image}>
+              <img src={g.hinhAnh !== null ? g.hinhAnh : imgDemo} />
+            </div>
+            <div className={s.info}>
+              <p className={s.name}>{g.tenCumRap}</p>
+              <p className={s.address}>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              </p>
+            </div>
+          </div>
+          <div className={s.group__showtime}>
+            {renderShowtime(g.lichChieuPhim)}
+          </div>
+        </div>
+      );
     });
   };
 
   return (
     <>
       <Header />
-      <div className={style.backGroundDetail}>
-        <img src={detailMovie.hinhAnh} />
-      </div>
-      <Container className={style.detailChild}>
-        <div className={style.detail_movie}>
-          {showVideo ? (
-            <ReactPlayer
-              url={detailMovie.trailer}
-              width="300px"
-              height="400px"
-              auto
-            />
-          ) : (
-            <a href="#">
-              <img
-                src={detailMovie.hinhAnh}
-                alt=""
-                width="300px"
-                height="400px"
-              />
-            </a>
-          )}
-          <div className="detail_movie_child">
-            <h3>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h3>
-            <h3>{detailMovie.tenPhim}</h3>
-            <h3>2D/Digital</h3>
-            {showVideo ? (
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={() => handleShowVide()}
-              >
-                Đóng Trailer
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="btn btn-success"
-                onClick={() => handleShowVide()}
-              >
-                Xem Trailer
-              </button>
-            )}
-            <button
-              type="button"
-              className="btn btn-danger"
-              // onClick={() => history.push(`/booking/${maPhim}`)}
-            >
-              Đặt vé
-            </button>
-          </div>
-
-          <div>
-            <div class="icon_Rating">
-              <img src={rating} alt="" height="200px" />
-            </div>
-            <div className={classes.root2}>
-              <Rating
-                name="hover-feedback"
-                value={"5"}
-                precision={1}
-                style={{ left: "20%" }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <TabContext value={value}>
-          <AppBar position="static">
-            <TabList
-              className={style.barTab}
-              onChange={handleChange}
-              aria-label="simple tabs example"
-            >
-              <Tab label="THÔNG TIN" value="TH" />
-              <Tab label="ĐÁNH GIÁ" value="DG" />
-              <Tab label="rẠP CHIẾU" value="THR" />
-            </TabList>
-          </AppBar>
-
-          <TabPanel value="TH" className={style.detail_text}>
-            <div>
-              <h5>Ngày khởi chiếu</h5>
-              <h5>Tên Phim</h5>
-              <h5>Định dạng</h5>
-              <h4>Nội dung</h4>
-            </div>
-            <div>
-              <h5>{dateFormat(detailMovie.ngayKhoiChieu, "dd/mm/yyyy")}</h5>
-              <h5>{detailMovie.tenPhim}</h5>
-              <h5>2D/Digital</h5>
-              <h5>{detailMovie.moTa}</h5>
-            </div>
-            <div></div>
-          </TabPanel>
-          <TabPanel value="DG" className={style.detail_text}>
-            <h3>{detailMovie.danhGia}/10 </h3>
-          </TabPanel>
-          <TabPanel value="THR" className={style.detail_table}>
-            <Table>
-              <Container>
-                <div style={{ height: 400, width: "100%" }}>
-                  <DataGrid
-                    columns={columns}
-                    rows={renderRap()}
-                    pageSize={10}
-                  />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <section className={s.detail__section}>
+            <div className={s.detail__wrapper}>
+              <div className={s.detail__content}>
+                <div className={s.content__main}>
+                  <div className={s.info}>
+                    <div className={`${s.wrapper} row`}>
+                      <div className={`col-sm-3 col-5 ${s.left}`}>
+                        <img
+                          style={{
+                            backgroundImage: `url('${renderImageUrl(hinhAnh)}')`
+                          }}
+                          className={`w-100`}
+                          alt=""
+                        />
+                      </div>
+                      <div className={`${s.middle} text-white col-sm-5 col-12`}>
+                        <p>{dayjs(ngayKhoiChieu).format("DD.MM.YYYY")}</p>
+                        <p>
+                          <span className={s.rated}>C18</span>
+                          <span className={s.title}>{tenPhim}</span>
+                        </p>
+                        <p>100 phút - 0 IMDb - 2D/Digital</p>
+                        <p>
+                          <button
+                            onClick={handleOpenModal}
+                            className={s.play__trailer}
+                          >
+                            Play trailer
+                          </button>
+                        </p>
+                      </div>
+                      <div className={`${s.right} col-sm-4 col-7`}>
+                        <div className={s.circle__rating}>
+                          <div className={s.circle__border}></div>
+                          <div className={s.circle__fill}>
+                            <div className={s.half}></div>
+                            <span>{randomRating}</span>
+                            <div
+                              style={{
+                                transform: `rotate(${
+                                  ((randomRating - 5) * 180) / 5 + 180
+                                }deg)`
+                              }}
+                              className={s.half}
+                            ></div>
+                          </div>
+                        </div>
+                        <div className={s.star__rating}>
+                          <img src={star} />
+                          <img src={star} />
+                          <img src={star} />
+                          <img src={star} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={s.background__blur}>
+                    <img src={renderImageUrl(hinhAnh)} />
+                  </div>
+                  <div className={s.gradient}></div>
                 </div>
-              </Container>
-            </Table>
-          </TabPanel>
-        </TabContext>
-      </Container>
-      <Footer />
+                <div className={s.content__sub}>
+                  <div className={`nav nav-tabs ${s.header}`}>
+                    <button
+                      className={`${s.header__tab} active`}
+                      data-target="#showtime"
+                      data-toggle="tab"
+                    >
+                      Lịch chiếu
+                    </button>
+                    <button
+                      className={s.header__tab}
+                      data-target="#info"
+                      data-toggle="tab"
+                    >
+                      Thông tin
+                    </button>
+                  </div>
+                  <div className={`tab-content ${s.body}`}>
+                    <div id="showtime" className="tab-pane fade active show ">
+                      <div className="row m-0">
+                        <div className={`col-md-4 ${s.cinema__system}`}>
+                          <div className="nav nav-pills" role="tablist">
+                            {renderCinemaSystem()}
+                          </div>
+                        </div>
+                        <div className={`col-md-8 ${s.cinema__group}`}>
+                          {renderCinemaGroup()}
+                        </div>
+                      </div>
+                    </div>
+                    <div id="info" className="text-white tab-pane fade ">
+                      N/A
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Modal
+              className={classes.modal}
+              open={openModal}
+              onClose={handleCloseModal}
+              closeAfterTransition
+            >
+              <Fade in={openModal}>
+                <iframe
+                  className={s.video}
+                  src={`${trailer}?autoplay=1`}
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </Fade>
+            </Modal>
+          </section>
+          <Footer />
+        </>
+      )}
     </>
   );
 }

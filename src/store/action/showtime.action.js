@@ -3,6 +3,7 @@ import {
   GET_SHOWTIME_BY_MOVIE,
   SET_SHOWTIME_DETAIL
 } from "../constant/showtime.constant";
+import { startLoadingAction, stopLoadingAction } from "./common.action";
 
 export const createShowtimeAction = (showtime) => {
   return async () => {
@@ -24,6 +25,7 @@ export const setShowtimeDetailAction = (payload) => {
 
 export const getShowtimeByMovieAction = (movieCode) => {
   return async (dispatch) => {
+    dispatch(startLoadingAction());
     try {
       const response = await showtimeService.getShowtimeByMovie(movieCode);
       console.log(response);
@@ -34,5 +36,8 @@ export const getShowtimeByMovieAction = (movieCode) => {
     } catch (error) {
       console.log(error.response);
     }
+    setTimeout(() => {
+      dispatch(stopLoadingAction());
+    }, 1000);
   };
 };
